@@ -8,7 +8,7 @@ const SinglePlayer = props => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => {
-        this.props.navigation.navigate("PlayerDetailsScreen");
+        props.navigation.navigate("PlayerDetailsScreen");
       }}
     >
       <View
