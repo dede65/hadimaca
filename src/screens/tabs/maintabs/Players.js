@@ -47,7 +47,6 @@ class Players extends Component {
 
     return (
       <SinglePlayer
-        player={player}
         navigation={this.props.navigation}
         player={player}
       />
