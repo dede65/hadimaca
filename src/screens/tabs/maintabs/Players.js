@@ -45,7 +45,13 @@ class Players extends Component {
     const player = item._data;
     console.log("Single Player", player);
 
-    return <SinglePlayer player={player} />;
+    return (
+      <SinglePlayer
+        player={player}
+        navigation={this.props.navigation}
+        player={player}
+      />
+    );
   };
 
   componentDidMount = () => {
