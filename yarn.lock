@@ -705,6 +705,24 @@
     xcode "^2.0.0"
     xmldoc "^0.4.0"
 
+"@react-native-firebase/app-types@0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-0.0.26.tgz#70499ee68f5f3807370b994e352fbc207e99512f"
+  integrity sha512-3iC+NCrdHr69FcE6E9XuSZxga7bA/rNr01dmfWvsDeiD4S3kxrMPjnjp3AA6DumqJKZ+8WxKAAIQ5O0BrY0gag==
+
+"@react-native-firebase/common@0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/common/-/common-0.0.26.tgz#3df21a8eaf1a37ab66af13fa1af47c2f70dcfb30"
+  integrity sha512-fyBMBEW0iubxrCVIcTg6ByWohXHG77hDNEW3RsemY1Ph7/qvov79NdRLnLX54NQRDSzN1GpGlj4tV6y8isiD1A==
+
+"@react-native-firebase/functions@^0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/functions/-/functions-0.0.26.tgz#7f64c65f8d38d464ba1160b096b5c5cc9704b76d"
+  integrity sha512-/hQ9tx/zNvCgLGxAiqwqyudASoBthvOo/SBNaxs8WKcWbsa5VlcJAOYevAko6SgQhVsXoZsD/cfizEcJKzbKbg==
+  dependencies:
+    "@react-native-firebase/app-types" "0.0.26"
+    "@react-native-firebase/common" "0.0.26"
+
 "@react-navigation/core@~3.4.1":
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.4.2.tgz#bec563e94fde40fbab3730cdc97f22afbb2a1498"
