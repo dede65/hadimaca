@@ -90,8 +90,6 @@ class CreatePlayerProfile extends Component {
         console.log("getPlayerDetailsError", error.message);
       }
     });
-
-    console.log("in getPlayerDetails in CreatePlayerProfile.js : start");
   };
 
   savePlayerDetails = () => {
@@ -150,10 +148,9 @@ class CreatePlayerProfile extends Component {
         });
       } catch (error) {
         this.setState({ savePlayerDetailsError: error.message });
-        console.log("savePlayerDetailsError", error.message);
+        console.log("savePlayerDetailsError", error);
       }
     });
-    console.log("in savePlayerDetails in CreatePlayerProfile.js : end");
   };
 
   onModalClose = () => {
