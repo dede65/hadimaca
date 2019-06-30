@@ -47,7 +47,7 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
     }
   },
   {
-    lazy: true,
+    lazy: false,
     backBehavior: "none",
     tabBarPosition: "bottom",
     tabBarOptions: {
