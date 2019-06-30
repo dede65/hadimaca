@@ -61,7 +61,7 @@ class Players extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Oyuncu Bul</Text>
+          <Text style={styles.headerTitle}>Oyuncular</Text>
         </View>
         <FlatList
           style={{ flex: 1, paddingTop: 4 }}
