@@ -19,7 +19,7 @@ const SinglePlayer = props => {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
-          paddingHorizontal: 8
+          paddingHorizontal: 2
         }}
       >
         <View
