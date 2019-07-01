@@ -25,6 +25,7 @@ import Settings from "./src/screens/Settings";
 import TeamDetails from "./src/screens/TeamDetails";
 import PreviousGames from "./src/screens/PreviousGames";
 import PlayerDetails from "./src/screens/PlayerDetails";
+import Chat from "./src/screens/Chat";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -51,7 +52,8 @@ const RootNavigator = createStackNavigator(
     CreateTeamScreen: CreateTeam,
     PreviousGamesScreen: PreviousGames,
     SettingsScreen: Settings,
-    PlayerDetailsScreen:PlayerDetails
+    PlayerDetailsScreen:PlayerDetails,
+    ChatScreen : Chat
   },
   {
     initialRouteName: "UserLoginScreen",
