@@ -61,55 +61,81 @@ class SingleTeamItem extends Component {
       >
         <Image style={styles.image} source={{ uri: teamLogoUri }} />
         <View style={styles.content}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-              alignItems: "center"
-              //backgroundColor: "red",
-            }}
-          >
-            <View style={{ flex: 4 }}>
+          <View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                alignItems: "center"
+                //backgroundColor: "red",
+              }}
+            >
+              <View style={{ flex: 4 }}>
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={{
+                    fontSize: 18,
+                    margin: 2,
+                    color: "#212121",
+                    fontWeight: "500"
+                  }}
+                >
+                  {nameOfTheTeam}
+                </Text>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <TouchableOpacity
+                  style={{ paddingHorizontal: 4 }}
+                  onPress={() => {
+                    this.addToFavorites();
+                  }}
+                >
+                  <Icon name="heart-outline" color="green" size={28} />
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Icon name="map-marker" size={18} color="green" />
               <Text
                 numberOfLines={1}
                 ellipsizeMode="tail"
-                style={{
-                  fontSize: 18,
-                  margin: 2,
-                  color: "#212121",
-                  fontWeight: "500"
-                }}
+                style={{ margin: 2, color: "#212121", fontSize: 16 }}
               >
-                {nameOfTheTeam}
+                {district} - {city}
               </Text>
             </View>
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            >
-              <TouchableOpacity
-                style={{ paddingHorizontal: 4 }}
-                onPress={() => {
-                  this.addToFavorites();
-                }}
-              >
-                <Icon name="heart-outline" color="green" size={28} />
-              </TouchableOpacity>
-            </View>
           </View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Icon name="map-marker" size={18} color="green" />
-            <Text
-              numberOfLines={1}
-              ellipsizeMode="tail"
-              style={{ margin: 2, color: "#212121", fontSize: 16 }}
-            >
-              {district} - {city}
-            </Text>
+          <View
+            style={{
+              //backgroundColor: "red",
+              //paddingHorizontal: 8,
+              marginBottom:8,
+              flexDirection: "row",
+              justifyContent: "space-between"
+            }}
+          >
+            <View style={{ margin:2 }}>
+              <Text
+                style={{ color: "#212121", fontWeight: "400", fontSize: 16 }}
+              >
+                12 yorum
+              </Text>
+            </View>
+            <View style={{ marginRight:12}}>
+              <Text
+                style={{ color: "#212121", fontWeight: "400", fontSize: 16 }}
+              >
+                9.2
+              </Text>
+            </View>
           </View>
         </View>
       </TouchableOpacity>
@@ -138,7 +164,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 6
   },
   content: {
-    flex: 1
+    flex: 1,
+    justifyContent: "space-between"
     //height: height * 0.15
   }
 });
