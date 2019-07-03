@@ -5,7 +5,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  Image
+  Image,
+  TextInput
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -41,124 +42,161 @@ class TeamDetails extends Component {
           <Text style={styles.headerTitle}>{nameOfTheTeam}</Text>
         </View>
         <ScrollView style={styles.scrollview}>
-          <View style={styles.content}>
-            <View style={styles.contentRow}>
-              <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{ uri: teamLogoUri }} />
+          <View style={styles.teamInfoContainer}>
+            <View style={styles.imageContainer}>
+              <Image style={styles.image} source={{ uri: teamLogoUri }} />
+            </View>
+            <View style={styles.teamDetails}>
+              <View style={styles.basicDetails}>
+                <Text>Takım Bilgileri</Text>
+              </View>
+              <View />
+              <View style={styles.info}>
+                <View style={{ flex: 1 }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <View style={{ flex: 1 }}>
+                      <Text>Takım Adı</Text>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text>{nameOfTheTeam}</Text>
+                    </View>
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <View style={{ flex: 1 }}>
+                      <Text>Şehir</Text>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text>{city}</Text>
+                    </View>
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <View style={{ flex: 1 }}>
+                      <Text>İlçe</Text>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text>{district}</Text>
+                    </View>
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <View style={{ flex: 1 }}>
+                      <Text>As oyuncu sayısı</Text>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text>{numberOfFootballers}</Text>
+                    </View>
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <View style={{ flex: 1 }}>
+                      <Text>Yedek oyuncu sayısı</Text>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text>{numberOfSubstitutes}</Text>
+                    </View>
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <View style={{ flex: 1 }}>
+                      <Text>Puan</Text>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <Text>9.4</Text>
+                    </View>
+                  </View>
+                </View>
               </View>
             </View>
-            <View style={styles.rating}>
-              <Text
-                style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}
+          </View>
+
+          <View style={styles.addToFavAndSendMessage}>
+            <View style={styles.addToFavorites}>
+              <TouchableOpacity
+                style={styles.addToFavoritesButton}
+                onPress={this.addToFavorites}
               >
-                Puan
-              </Text>
-              <Text
-                style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}
-              >
-                10
-              </Text>
-            </View>
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Text style={{ fontSize: 18, color: "#212121" }}>
-                Takım Kaptanı Uğur DEDE
-              </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}
-              >
-                <Icon name="map-marker" size={18} color="green" />
-                <Text
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
-                  style={{ margin: 2, color: "#212121", fontSize: 16 }}
-                >
-                  {district} - {city}
+                <Text style={{ fontSize: 18, color: "#212121" }}>
+                  Favorilere ekle
                 </Text>
-              </View>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.sendMessage}>
+              <TouchableOpacity
+                style={styles.sendMessageButton}
+                onPress={this.sendMessage}
+              >
+                <Text style={{ fontSize: 18, color: "#212121" }}>
+                  Mesaj gönder
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
-          <View style={{ flex: 1, flexDirection: "row", marginTop: 20 }}>
-            <View style={{ flex: 2 }}>
-              <Text
-                style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}
-              >
-                As oyuncu sayısı
-              </Text>
+
+          <View style={styles.previousGames}>
+            <Text style={{ fontWeight: "500" }}>Önceki maçlar</Text>
+            <Text>---</Text>
+            <Text>---</Text>
+            <Text>---</Text>
+            <Text>---</Text>
+          </View>
+
+          <View style={styles.statistics}>
+            <Text style={{ fontWeight: "500" }}>İstatistikler</Text>
+            <Text>Maç sayısı</Text>
+            <Text>Galibiyet</Text>
+            <Text>Beraberlik</Text>
+            <Text>Mağlubiyet</Text>
+          </View>
+          <View style={styles.footballers}>
+            <Text style={{ fontWeight: "500" }}>Kadro</Text>
+            <View>
+              <Text>Ad soyad</Text>
             </View>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 18, color: "#212121" }}>
-                {numberOfFootballers}
-              </Text>
+            <View>
+              <Text>Ad soyad</Text>
+            </View>
+            <View>
+              <Text>Ad soyad</Text>
+            </View>
+            <View>
+              <Text>Ad soyad</Text>
+            </View>
+            <View>
+              <Text>Ad soyad</Text>
+            </View>
+            <View>
+              <Text>Ad soyad</Text>
+            </View>
+            <View>
+              <Text>Ad soyad</Text>
+            </View>
+            <View>
+              <Text>Ad soyad</Text>
             </View>
           </View>
-          <View style={{ flex: 1, flexDirection: "row", marginTop: 20 }}>
-            <View style={{ flex: 2 }}>
-              <Text
-                style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}
-              >
-                Yedek oyuncu sayısı
-              </Text>
+
+          <View style={styles.comments}>
+            <Text style={{ fontWeight: "500" }}>Yorumlar</Text>
+            <View>
+              <Text>yorum 1</Text>
             </View>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 18, color: "#212121" }}>
-                {numberOfSubstitutes}
-              </Text>
+            <View>
+              <Text>yorum 2</Text>
             </View>
-          </View>
-          <View style={{ flex: 1, flexDirection: "row", marginTop: 20 }}>
-            <View style={{ flex: 2 }}>
-              <Text
-                style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}
-              >
-                Maç sayısı
-              </Text>
+            <View>
+              <Text>yorum 3</Text>
             </View>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 18, color: "#212121" }}>{12}</Text>
+            <View>
+              <Text>yorum 4</Text>
             </View>
-          </View>
-          <View style={{ flex: 1, flexDirection: "row", marginTop: 20 }}>
-            <View style={{ flex: 2 }}>
-              <Text
-                style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}
-              >
-                Galibiyet
-              </Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 18, color: "#212121" }}>{7}</Text>
-            </View>
-          </View>
-          <View style={{ flex: 1, flexDirection: "row", marginTop: 20 }}>
-            <View style={{ flex: 2 }}>
-              <Text
-                style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}
-              >
-                Mağlubiyet
-              </Text>
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 18, color: "#212121" }}>{5}</Text>
+            <View>
+              <Text>yorum 4</Text>
             </View>
           </View>
         </ScrollView>
-        <TouchableOpacity
-          style={styles.inviteButton}
-          onPress={() => {
-            this.props.navigation.navigate("ChatScreen");
-          }}
-        >
-          <Text style={{ fontSize: 18, color: "#fff" }}>Hadi maça</Text>
-        </TouchableOpacity>
+        <View style={styles.comment}>
+          <TextInput placeholder="Yorum yap" style={styles.commentTextInput} />
+          <TouchableOpacity style={styles.sendButton}>
+            <Text>Gönder</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -169,6 +207,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  teamInfoContainer: {
+    flexDirection: "row",
+    height: 200,
+    backgroundColor: "blue",
+    //padding: 8,
+    margin: 8
+  },
   header: {
     backgroundColor: "green",
     height: 64,
@@ -176,50 +221,103 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   headerTitle: { color: "#fff", fontSize: 18 },
-  scrollview: {
-    marginBottom: 64
-  },
-  inviteButton: {
-    position: "absolute",
-    right: 8,
-    bottom: 8,
-    backgroundColor: "green",
-    margin: 8,
-    height: 48,
-    alignItems: "center",
-    justifyContent: "center",
-    width: "30%",
-    borderRadius: 24
-  },
-  content: {
-    //backgroundColor: "red"
-  },
-  contentRow: {
-    flex: 1,
-    flexDirection: "row",
-    height: 200
-  },
-  matchCount: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
+  scrollview: { marginBottom: 60 },
   imageContainer: {
-    flex: 2,
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: "red",
+    padding: 2
   },
   image: {
-    width: 170,
-    height: 170,
-    borderWidth: 0.5,
-    borderRadius: 85,
+    flex: 1,
+    //height: 200,
+    width: 100,
+    backgroundColor: "yellow"
+  },
+  teamDetails: {
+    flex: 1,
+    backgroundColor: "yellow",
+    padding: 2
+  },
+  basicDetails: {
+    backgroundColor: "grey",
+    alignItems: "center",
+    borderBottomWidth: 1,
     borderColor: "green"
   },
-  rating: {
-    flex: 1,
+  playerTeamLogo: {
+    backgroundColor: "blue",
+    height: 30,
+    width: 30,
+    marginRight: 8
+  },
+  info: {
+    flexDirection: "row"
+  },
+  addToFavAndSendMessage: {
     flexDirection: "row",
+    padding: 8
+  },
+  addToFavorites: {
+    flex: 1,
+    padding: 8,
+    marginRight: 4,
+    borderWidth: 1,
+    borderColor: "green",
+    alignItems: "center"
+    //backgroundColor: "blue"
+  },
+  addToFavoritesButton: {
+    alignItems: "center"
+  },
+  sendMessage: {
+    flex: 1,
+    padding: 8,
+    marginLeft: 4,
+    borderWidth: 1,
+    borderColor: "green",
+    alignItems: "center"
+  },
+  sendMessageButton: { alignItems: "center" },
+  previousGames: {
+    padding: 8,
+    margin: 8,
+    backgroundColor: "red"
+  },
+  statistics: {
+    backgroundColor: "grey",
+    padding: 4,
+    margin: 8
+  },
+  footballers: {
+    backgroundColor: "red",
+    padding: 4,
+    margin: 8
+  },
+  comments: {
+    backgroundColor: "yellow",
+    padding: 8,
+    margin: 8
+  },
+  comment: {
+    position: "absolute",
+    bottom: 0,
+    flexDirection: "row",
+    padding: 4,
+    margin: 8,
+    backgroundColor: "#f5f5f5"
+  },
+  commentTextInput: {
+    borderColor: "green",
+    borderWidth: 1,
+    width: "75%",
+    borderRadius: 24,
+    margin: 2
+  },
+  sendButton: {
+    flex: 1,
+    backgroundColor: "green",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    borderRadius: 24,
+    margin: 2
   }
 });
