@@ -10,6 +10,16 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 class TeamDetails extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
+  sendMessage = () => {
+    this.props.navigation.navigate("ChatScreen");
+  };
+
   render() {
     console.log("TeamDetails props", this.props);
 
@@ -38,8 +48,16 @@ class TeamDetails extends Component {
               </View>
             </View>
             <View style={styles.rating}>
-              <Text style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}>Puan</Text>
-              <Text style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}>10</Text>
+              <Text
+                style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}
+              >
+                Puan
+              </Text>
+              <Text
+                style={{ fontSize: 18, color: "#212121", marginHorizontal: 8 }}
+              >
+                10
+              </Text>
             </View>
             <View
               style={{
@@ -133,7 +151,12 @@ class TeamDetails extends Component {
             </View>
           </View>
         </ScrollView>
-        <TouchableOpacity style={styles.inviteButton}>
+        <TouchableOpacity
+          style={styles.inviteButton}
+          onPress={() => {
+            this.props.navigation.navigate("ChatScreen");
+          }}
+        >
           <Text style={{ fontSize: 18, color: "#fff" }}>Hadi maça</Text>
         </TouchableOpacity>
       </View>
@@ -195,7 +218,7 @@ const styles = StyleSheet.create({
   },
   rating: {
     flex: 1,
-    flexDirection:"row",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center"
   }
