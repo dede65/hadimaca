@@ -37,13 +37,18 @@ class Chat extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <GiftedChat
-          messages={this.state.messages}
-          onSend={messages => this.onSend(messages)}
-          user={{
-            _id: 1
-          }}
-        />
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Mesajlar</Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <GiftedChat
+            messages={this.state.messages}
+            onSend={messages => this.onSend(messages)}
+            user={{
+              _id: 1
+            }}
+          />
+        </View>
       </View>
     );
   }
@@ -52,8 +57,13 @@ export default Chat;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
+  },
+  header: {
+    backgroundColor: "green",
+    height: 64,
     alignItems: "center",
     justifyContent: "center"
-  }
+  },
+  headerTitle: { color: "#fff", fontSize: 18 }
 });
