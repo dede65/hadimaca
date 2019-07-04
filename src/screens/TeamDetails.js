@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import SingleTeamLineupPlayer from "../components/SingleTeamLineupPlayer";
-
+import SingleTeamPreviousGame from "../components/SingleTeamPreviousGame";
 
 class TeamDetails extends Component {
   constructor(props) {
@@ -60,12 +60,56 @@ class TeamDetails extends Component {
           photoUrl: "",
           position: "Forvet"
         }
+      ],
+      previousGames: [
+        {
+          homeTeam: {
+            logo: "",
+            name: "Ev sahibi",
+            score: 2
+          },
+          awayTeam: {
+            logo: "",
+            name: "Deplasman",
+            score: 1
+          }
+        },
+        {
+          homeTeam: {
+            logo: "",
+            name: "Ev sahibi",
+            score: 2
+          },
+          awayTeam: {
+            logo: "",
+            name: "Deplasman",
+            score: 1
+          }
+        },
+        {
+          homeTeam: {
+            logo: "",
+            name: "Ev sahibi",
+            score: 2
+          },
+          awayTeam: {
+            logo: "",
+            name: "Deplasman",
+            score: 1
+          }
+        }
       ]
     };
   }
 
   sendMessage = () => {
     this.props.navigation.navigate("ChatScreen");
+  };
+
+  renderPreviousGames = () => {
+    return this.state.previousGames.map((previousGame, index) => {
+      return <SingleTeamPreviousGame key={index} previousGame={previousGame} />;
+    });
   };
 
   renderTeamLineup = () => {
@@ -184,10 +228,7 @@ class TeamDetails extends Component {
 
           <View style={styles.previousGames}>
             <Text style={{ fontWeight: "500" }}>Önceki maçlar</Text>
-            <Text>---</Text>
-            <Text>---</Text>
-            <Text>---</Text>
-            <Text>---</Text>
+            {this.renderPreviousGames()}
           </View>
 
           <View style={styles.statistics}>
@@ -254,7 +295,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   headerTitle: { color: "#fff", fontSize: 18 },
-  scrollview: {  },
+  scrollview: {},
   imageContainer: {
     backgroundColor: "red",
     padding: 2
@@ -332,7 +373,7 @@ const styles = StyleSheet.create({
   },
   comment: {
     flexDirection: "row",
-    marginVertical: 4,
+    marginVertical: 4
     //backgroundColor: "#f5f5f5"
   },
   commentTextInput: {
