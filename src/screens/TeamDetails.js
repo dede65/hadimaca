@@ -11,6 +11,7 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import SingleTeamLineupPlayer from "../components/SingleTeamLineupPlayer";
 
+
 class TeamDetails extends Component {
   constructor(props) {
     super(props);
@@ -218,14 +219,17 @@ class TeamDetails extends Component {
             <View>
               <Text>yorum 4</Text>
             </View>
+            <View style={styles.comment}>
+              <TextInput
+                placeholder="Yorum yap"
+                style={styles.commentTextInput}
+              />
+              <TouchableOpacity style={styles.sendButton}>
+                <Text>Gönder</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
-        <View style={styles.comment}>
-          <TextInput placeholder="Yorum yap" style={styles.commentTextInput} />
-          <TouchableOpacity style={styles.sendButton}>
-            <Text>Gönder</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     );
   }
@@ -250,7 +254,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   headerTitle: { color: "#fff", fontSize: 18 },
-  scrollview: { marginBottom: 60 },
+  scrollview: {  },
   imageContainer: {
     backgroundColor: "red",
     padding: 2
@@ -327,19 +331,17 @@ const styles = StyleSheet.create({
     margin: 8
   },
   comment: {
-    position: "absolute",
-    bottom: 0,
     flexDirection: "row",
-    padding: 4,
-    margin: 8,
-    backgroundColor: "#f5f5f5"
+    marginVertical: 4,
+    //backgroundColor: "#f5f5f5"
   },
   commentTextInput: {
     borderColor: "green",
     borderWidth: 1,
     width: "75%",
     borderRadius: 24,
-    margin: 2
+    margin: 2,
+    backgroundColor: "#f5f5f5"
   },
   sendButton: {
     flex: 1,
