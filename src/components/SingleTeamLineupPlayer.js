@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 class SingleTeamLineupPlayer extends Component {
   render() {
@@ -8,14 +9,19 @@ class SingleTeamLineupPlayer extends Component {
       <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1 }}>
           <View style={styles.row}>
-            <View style={styles.imageContainer}>
-              <Image style={styles.image} />
+            <View style={{flexDirection:"row"}}>
+              <View style={styles.imageContainer}>
+                <Image style={styles.image} />
+              </View>
+              <View style={styles.playerDetails}>
+                <Text style={{ padding: 2 }}>
+                  {player.firstName + " " + player.lastName}
+                </Text>
+                <Text style={{ padding: 2 }}>{player.position}</Text>
+              </View>
             </View>
-            <View style={styles.playerDetails}>
-              <Text style={{ padding: 2 }}>
-                {player.firstName + " " + player.lastName}
-              </Text>
-              <Text style={{ padding: 2 }}>{player.position}</Text>
+            <View>
+              <Icon name="chevron-right" color="green" size={32} />
             </View>
           </View>
         </TouchableOpacity>
@@ -30,13 +36,14 @@ const styles = StyleSheet.create({
     flex: 1,
     borderBottomWidth: 1,
     borderColor: "green",
-    marginBottom: 2,
+    marginBottom: 2
   },
   row: {
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: 'space-between',
   },
   imageContainer: {
-    margin: 2
+    margin: 4
   },
   image: {
     backgroundColor: "grey",
