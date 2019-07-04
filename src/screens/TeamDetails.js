@@ -9,16 +9,68 @@ import {
   TextInput
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import SingleTeamLineupPlayer from "../components/SingleTeamLineupPlayer";
 
 class TeamDetails extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      teamLineup: [
+        {
+          firstName: "Uğur",
+          lastName: "DEDE",
+          photoUrl: "",
+          position: "Forvet"
+        },
+        {
+          firstName: "Uğur",
+          lastName: "DEDE",
+          photoUrl: "",
+          position: "Forvet"
+        },
+        {
+          firstName: "Uğur",
+          lastName: "DEDE",
+          photoUrl: "",
+          position: "Forvet"
+        },
+        {
+          firstName: "Uğur",
+          lastName: "DEDE",
+          photoUrl: "",
+          position: "Forvet"
+        },
+        {
+          firstName: "Uğur",
+          lastName: "DEDE",
+          photoUrl: "",
+          position: "Forvet"
+        },
+        {
+          firstName: "Uğur",
+          lastName: "DEDE",
+          photoUrl: "",
+          position: "Forvet"
+        },
+        {
+          firstName: "Uğur",
+          lastName: "DEDE",
+          photoUrl: "",
+          position: "Forvet"
+        }
+      ]
+    };
   }
 
   sendMessage = () => {
     this.props.navigation.navigate("ChatScreen");
+  };
+
+  renderTeamLineup = () => {
+    return this.state.teamLineup.map((player, index) => {
+      return <SingleTeamLineupPlayer key={index} player={player} />;
+    });
   };
 
   render() {
@@ -146,30 +198,7 @@ class TeamDetails extends Component {
           </View>
           <View style={styles.footballers}>
             <Text style={{ fontWeight: "500" }}>Kadro</Text>
-            <View>
-              <Text>Ad soyad</Text>
-            </View>
-            <View>
-              <Text>Ad soyad</Text>
-            </View>
-            <View>
-              <Text>Ad soyad</Text>
-            </View>
-            <View>
-              <Text>Ad soyad</Text>
-            </View>
-            <View>
-              <Text>Ad soyad</Text>
-            </View>
-            <View>
-              <Text>Ad soyad</Text>
-            </View>
-            <View>
-              <Text>Ad soyad</Text>
-            </View>
-            <View>
-              <Text>Ad soyad</Text>
-            </View>
+            {this.renderTeamLineup()}
           </View>
 
           <View style={styles.comments}>
