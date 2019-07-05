@@ -233,10 +233,38 @@ class TeamDetails extends Component {
 
           <View style={styles.statistics}>
             <Text style={{ fontWeight: "500" }}>İstatistikler</Text>
-            <Text>Maç sayısı</Text>
-            <Text>Galibiyet</Text>
-            <Text>Beraberlik</Text>
-            <Text>Mağlubiyet</Text>
+            <View style={styles.statisticsContainer}>
+              <View style={styles.wins}>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>Galibiyet</Text>
+                </View>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>7</Text>
+                </View>
+              </View>
+              <View
+                style={{ borderLeftWidth: 2, borderColor: "green", height:40,width: 2 }}
+              />
+              <View style={styles.draw}>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>Beraberlik</Text>
+                </View>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>2</Text>
+                </View>
+              </View>
+              <View
+                style={{ borderLeftWidth: 2, borderColor: "green", height:40, width: 2 }}
+              />
+              <View style={styles.loss}>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>Mağlubiyet</Text>
+                </View>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>3</Text>
+                </View>
+              </View>
+            </View>
           </View>
           <View style={styles.footballers}>
             <Text style={{ fontWeight: "500" }}>Kadro</Text>
@@ -357,10 +385,18 @@ const styles = StyleSheet.create({
     backgroundColor: "red"
   },
   statistics: {
-    backgroundColor: "grey",
+    //backgroundColor: "grey",
     padding: 4,
     margin: 8
   },
+  statisticsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around"
+  },
+  wins: { alignItems: "center" },
+  draw: { alignItems: "center" },
+  loss: { alignItems: "center" },
   footballers: {
     backgroundColor: "red",
     padding: 4,
