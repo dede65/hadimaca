@@ -27,8 +27,28 @@ import PreviousGames from "./src/screens/PreviousGames";
 import PlayerDetails from "./src/screens/PlayerDetails";
 import Chat from "./src/screens/Chat";
 
+import NetInfo from "@react-native-community/netinfo";
+
 type Props = {};
 export default class App extends Component<Props> {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
+  componentDidMount = () => {
+    // Subscribe
+    this.unsubscribe = NetInfo.addEventListener(state => {
+      console.log("Connection type", state.type);
+      console.log("Is connected?", state.isConnected);
+    });
+  };
+
+  componentWillUnmount = () => {
+    this.unsubscribe();
+  };
+
   render() {
     return (
       <Provider store={store}>
@@ -52,8 +72,8 @@ const RootNavigator = createStackNavigator(
     CreateTeamScreen: CreateTeam,
     PreviousGamesScreen: PreviousGames,
     SettingsScreen: Settings,
-    PlayerDetailsScreen:PlayerDetails,
-    ChatScreen : Chat
+    PlayerDetailsScreen: PlayerDetails,
+    ChatScreen: Chat
   },
   {
     initialRouteName: "UserLoginScreen",
