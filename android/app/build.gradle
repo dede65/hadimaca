@@ -147,6 +147,7 @@ android {
 }
 
 dependencies {
+    implementation project(':@react-native-community_netinfo')
     compile project(':react-native-image-picker')
     compile project(':react-native-fbsdk')
     implementation project(':react-native-firebase')
