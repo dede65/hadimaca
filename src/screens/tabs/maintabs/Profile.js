@@ -20,8 +20,8 @@ class Profile extends Component {
       firstName: "",
       lastName: "",
       phoneNumber: "",
-      findMe: false,
-      findMyTeam: false
+      isUserOnline: true,
+      isUserTeamOnline: true
     };
   }
 
@@ -39,6 +39,8 @@ class Profile extends Component {
             lastName,
             phoneNumber,
             email,
+            isUserOnline,
+            isUserTeamOnline,
             userProfileImageURL
           } = doc.data();
           this.setState({
@@ -46,11 +48,53 @@ class Profile extends Component {
             lastName,
             phoneNumber,
             email,
+            isUserOnline,
+            isUserTeamOnline,
             userProfileImageURL
           });
         });
     } catch (error) {
       console.log("in getUserDetails in Profile.js: Error", error.message);
+    }
+  };
+
+  isUserOnline = async isUserOnline => {
+    try {
+      console.log("isUserOnline(): isOnline", isUserOnline);
+      const id = firebase.auth().currentUser.uid;
+      await firebase
+        .firestore()
+        .collection("users")
+        .doc(id)
+        .set(
+          {
+            isUserOnline: isUserOnline
+          },
+          { merge: true }
+        );
+      //this.setState({ isUserOnline:isUserOnline });
+    } catch (error) {
+      console.log(" is user online: Error", error.message);
+    }
+  };
+
+  isUserTeamOnline = async isUserTeamOnline => {
+    try {
+      console.log("isUserTeamOnline(): isOnline", isUserTeamOnline);
+      const id = firebase.auth().currentUser.uid;
+      await firebase
+        .firestore()
+        .collection("users")
+        .doc(id)
+        .set(
+          {
+            isUserTeamOnline: isUserTeamOnline
+          },
+          { merge: true }
+        );
+      //this.setState({ isUserTeamOnline:isUserTeamOnline });
+    } catch (error) {
+      console.log(" is user online: Error", error.message);
     }
   };
 
@@ -80,6 +124,11 @@ class Profile extends Component {
               style={styles.image}
               source={{ uri: this.state.userProfileImageURL }}
             />
+            {this.state.isUserOnline ? (
+              <Text style={{ color: "green" }}>Online</Text>
+            ) : (
+              <Text style={{ color: "red" }}>Offline</Text>
+            )}
             <Text>{this.state.firstName + " " + this.state.lastName}</Text>
             <Text>{this.state.email}</Text>
             <Text>{this.state.phoneNumber}</Text>
@@ -91,10 +140,8 @@ class Profile extends Component {
               </Text>
             </View>
             <Switch
-              onValueChange={findMe => {
-                this.setState({ findMe });
-              }}
-              value={this.state.findMe}
+              onValueChange={this.isUserOnline}
+              value={this.state.isUserOnline}
             />
           </View>
           <View style={styles.findMyTeam}>
@@ -104,10 +151,8 @@ class Profile extends Component {
               </Text>
             </View>
             <Switch
-              onValueChange={findMyTeam => {
-                this.setState({ findMyTeam });
-              }}
-              value={this.state.findMyTeam}
+              onValueChange={this.isUserTeamOnline}
+              value={this.state.isUserTeamOnline}
             />
           </View>
           <TouchableOpacity
