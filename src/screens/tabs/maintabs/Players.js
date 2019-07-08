@@ -15,9 +15,32 @@ class Players extends Component {
 
     this.state = {
       players: [],
+      onlinePlayers: [],
       loading: false
     };
   }
+
+  getOnlinePlayers = () => {
+    console.log("get online players");
+    this.setState({ loading: true }, async () => {
+      try {
+        const id = firebase.auth().currentUser.uid;
+        const querySnapshot = await firebase
+          .firestore()
+          .collection("players")
+          .where("isPlayerOnline", "==", true)
+          .get()
+        console.log("online players querySnapshot", querySnapshot);
+        const onlinePlayers = querySnapshot.docs.filter(
+          player => player.id != id
+        );
+        console.log("online players", onlinePlayers);
+        this.setState({ onlinePlayers: onlinePlayers, loading: false });
+      } catch (error) {
+        console.log("in getOnlinePlayers in Players.js : Error", error.message);
+      }
+    });
+  };
 
   getPlayers = () => {
     console.log("in getPlayers in Players.js.js : start");
@@ -45,16 +68,12 @@ class Players extends Component {
     const player = item._data;
     console.log("Single Player", player);
 
-    return (
-      <SinglePlayer
-        navigation={this.props.navigation}
-        player={player}
-      />
-    );
+    return <SinglePlayer navigation={this.props.navigation} player={player} />;
   };
 
   componentDidMount = () => {
-    this.getPlayers();
+    //this.getPlayers();
+    this.getOnlinePlayers();
   };
 
   render() {
@@ -65,7 +84,8 @@ class Players extends Component {
         </View>
         <FlatList
           style={{ flex: 1, paddingTop: 4 }}
-          data={this.state.players}
+          //data={this.state.players}
+          data={this.state.onlinePlayers}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}
         />
