@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 class SingleTeamPreviousGame extends Component {
   render() {
-    const { previousGame } = this.props;
+    const { previousGame } = this.props;  
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.content}>
@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
   seperator: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "grey"
+    backgroundColor: "grey",
+    justifyContent: "center"
   },
 
   awayTeam: {
