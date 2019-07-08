@@ -54,6 +54,7 @@ class Profile extends Component {
     }
   };
 
+  // get player status and update db
   setPlayerStatus = async isPlayerOnline => {
     console.log("isPlayerOnline(): isOnline", isPlayerOnline);
     this.setState({ isPlayerOnline: isPlayerOnline }, async () => {
@@ -75,7 +76,7 @@ class Profile extends Component {
     });
   };
 
-  // get player status and show on profile
+  // get player status and update state
   getPlayerStatus = async () => {
     console.log("getPlayerStatus():start");
     try {
@@ -97,6 +98,8 @@ class Profile extends Component {
       console.log("getPlayerStatus(): Error", error.message);
     }
   };
+
+  //get team status and update db
   setTeamStatus = async isUserTeamOnline => {
     console.log("isUserTeamOnline(): isOnline", isUserTeamOnline);
     this.setState({ isUserTeamOnline: isUserTeamOnline }, async () => {
@@ -118,6 +121,26 @@ class Profile extends Component {
     });
   };
 
+  // get team's status and update status
+  getTeamStatus = async () => {
+    console.log("getTeamStatus():start");
+    try {
+      const uid = firebase.auth().currentUser.uid;
+      const querySnapshot = await firebase
+        .firestore()
+        .collection("teams")
+        .where("id", "==", uid)
+        .get();
+      console.log(
+        "getTeamStatus",
+        querySnapshot.docs[0]._data.isUserTeamOnline
+      );
+      this.setState({
+        isUserTeamOnline: querySnapshot.docs[0]._data.isUserTeamOnline
+      });
+    } catch (error) {}
+  };
+
   logout = async () => {
     try {
       await firebase.auth().signOut();
@@ -131,6 +154,7 @@ class Profile extends Component {
   componentDidMount = () => {
     this.getUserDetails();
     this.getPlayerStatus();
+    this.getTeamStatus();
   };
 
   render() {
@@ -141,10 +165,25 @@ class Profile extends Component {
         </View>
         <ScrollView style={styles.scrollview}>
           <View style={styles.imgContainer}>
-            <Image
-              style={styles.image}
-              source={{ uri: this.state.userProfileImageURL }}
-            />
+            <View>
+              <Image
+                style={styles.image}
+                source={{ uri: this.state.userProfileImageURL }}
+              />
+              <View
+                style={{
+                  position: "absolute",
+                  bottom:9,
+                  right:9,
+                  height: 24,
+                  width: 24,
+                  borderRadius: 20,
+                  borderWidth:2,
+                  borderColor:"#fff",
+                  backgroundColor: this.state.isPlayerOnline ? "green" : "red"
+                }}
+              />
+            </View>
             <Text>{this.state.firstName + " " + this.state.lastName}</Text>
             <Text>{this.state.email}</Text>
             <Text>{this.state.phoneNumber}</Text>
