@@ -20,7 +20,7 @@ class Profile extends Component {
       firstName: "",
       lastName: "",
       phoneNumber: "",
-      isUserOnline: true,
+      isPlayerOnline: true,
       isUserTeamOnline: true
     };
   }
@@ -39,8 +39,6 @@ class Profile extends Component {
             lastName,
             phoneNumber,
             email,
-            isUserOnline,
-            isUserTeamOnline,
             userProfileImageURL
           } = doc.data();
           this.setState({
@@ -48,8 +46,6 @@ class Profile extends Component {
             lastName,
             phoneNumber,
             email,
-            isUserOnline,
-            isUserTeamOnline,
             userProfileImageURL
           });
         });
@@ -58,44 +54,68 @@ class Profile extends Component {
     }
   };
 
-  isUserOnline = async isUserOnline => {
-    try {
-      console.log("isUserOnline(): isOnline", isUserOnline);
-      const id = firebase.auth().currentUser.uid;
-      await firebase
-        .firestore()
-        .collection("users")
-        .doc(id)
-        .set(
-          {
-            isUserOnline: isUserOnline
-          },
-          { merge: true }
-        );
-      //this.setState({ isUserOnline:isUserOnline });
-    } catch (error) {
-      console.log(" is user online: Error", error.message);
-    }
+  setPlayerStatus = async isPlayerOnline => {
+    console.log("isPlayerOnline(): isOnline", isPlayerOnline);
+    this.setState({ isPlayerOnline: isPlayerOnline }, async () => {
+      try {
+        const id = firebase.auth().currentUser.uid;
+        await firebase
+          .firestore()
+          .collection("players")
+          .doc(id)
+          .set(
+            {
+              isPlayerOnline: isPlayerOnline
+            },
+            { merge: true }
+          );
+      } catch (error) {
+        console.log(" is user online: Error", error.message);
+      }
+    });
   };
 
-  isUserTeamOnline = async isUserTeamOnline => {
+  // get player status and show on profile
+  getPlayerStatus = async () => {
+    console.log("getPlayerStatus():start");
     try {
-      console.log("isUserTeamOnline(): isOnline", isUserTeamOnline);
-      const id = firebase.auth().currentUser.uid;
-      await firebase
+      const uid = firebase.auth().currentUser.uid;
+      const querySnapshot = await firebase
         .firestore()
-        .collection("users")
-        .doc(id)
-        .set(
-          {
-            isUserTeamOnline: isUserTeamOnline
-          },
-          { merge: true }
-        );
-      //this.setState({ isUserTeamOnline:isUserTeamOnline });
+        .collection("players")
+        .where("id", "==", uid)
+        .get();
+
+      console.log(
+        "getPlayerStatus",
+        querySnapshot.docs[0]._data.isPlayerOnline
+      );
+      this.setState({
+        isPlayerOnline: querySnapshot.docs[0]._data.isPlayerOnline
+      });
     } catch (error) {
-      console.log(" is user online: Error", error.message);
+      console.log("getPlayerStatus(): Error", error.message);
     }
+  };
+  setTeamStatus = async isUserTeamOnline => {
+    console.log("isUserTeamOnline(): isOnline", isUserTeamOnline);
+    this.setState({ isUserTeamOnline: isUserTeamOnline }, async () => {
+      try {
+        const id = firebase.auth().currentUser.uid;
+        await firebase
+          .firestore()
+          .collection("teams")
+          .doc(id)
+          .set(
+            {
+              isUserTeamOnline: isUserTeamOnline
+            },
+            { merge: true }
+          );
+      } catch (error) {
+        console.log(" is user online: Error", error.message);
+      }
+    });
   };
 
   logout = async () => {
@@ -110,6 +130,7 @@ class Profile extends Component {
 
   componentDidMount = () => {
     this.getUserDetails();
+    this.getPlayerStatus();
   };
 
   render() {
@@ -124,11 +145,6 @@ class Profile extends Component {
               style={styles.image}
               source={{ uri: this.state.userProfileImageURL }}
             />
-            {this.state.isUserOnline ? (
-              <Text style={{ color: "green" }}>Online</Text>
-            ) : (
-              <Text style={{ color: "red" }}>Offline</Text>
-            )}
             <Text>{this.state.firstName + " " + this.state.lastName}</Text>
             <Text>{this.state.email}</Text>
             <Text>{this.state.phoneNumber}</Text>
@@ -140,8 +156,8 @@ class Profile extends Component {
               </Text>
             </View>
             <Switch
-              onValueChange={this.isUserOnline}
-              value={this.state.isUserOnline}
+              onValueChange={this.setPlayerStatus}
+              value={this.state.isPlayerOnline}
             />
           </View>
           <View style={styles.findMyTeam}>
@@ -151,7 +167,7 @@ class Profile extends Component {
               </Text>
             </View>
             <Switch
-              onValueChange={this.isUserTeamOnline}
+              onValueChange={this.setTeamStatus}
               value={this.state.isUserTeamOnline}
             />
           </View>
