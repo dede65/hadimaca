@@ -225,12 +225,7 @@ class TeamDetails extends Component {
               </TouchableOpacity>
             </View>
           </View>
-
-          <View style={styles.previousGames}>
-            <Text style={{ fontWeight: "500" }}>Önceki maçlar</Text>
-            {this.renderPreviousGames()}
-          </View>
-
+          
           <View style={styles.statistics}>
             <Text style={{ fontWeight: "500" }}>İstatistikler</Text>
             <View style={styles.statisticsContainer}>
@@ -266,6 +261,12 @@ class TeamDetails extends Component {
               </View>
             </View>
           </View>
+
+          <View style={styles.previousGames}>
+            <Text style={{ fontWeight: "500" }}>Önceki maçlar</Text>
+            {this.renderPreviousGames()}
+          </View>
+
           <View style={styles.footballers}>
             <Text style={{ fontWeight: "500" }}>Kadro</Text>
             {this.renderTeamLineup()}
@@ -331,7 +332,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     //height: 200,
-    width: 100,
+    width: 120,
     backgroundColor: "yellow"
   },
   teamDetails: {
