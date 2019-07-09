@@ -9,7 +9,7 @@ class SingleTeamLineupPlayer extends Component {
       <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1 }}>
           <View style={styles.row}>
-            <View style={{flexDirection:"row"}}>
+            <View style={{ flexDirection: "row" }}>
               <View style={styles.imageContainer}>
                 <Image style={styles.image} />
               </View>
@@ -20,7 +20,7 @@ class SingleTeamLineupPlayer extends Component {
                 <Text style={{ padding: 2 }}>{player.position}</Text>
               </View>
             </View>
-            <View>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
               <Icon name="chevron-right" color="green" size={32} />
             </View>
           </View>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    justifyContent: 'space-between',
+    justifyContent: "space-between"
   },
   imageContainer: {
     margin: 4
