@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import FavoriteTeams from "../screens/tabs/maintabs/FavoriteTeams";
 import Teams from "../screens/tabs/maintabs/Teams";
 import Players from "../screens/tabs/maintabs/Players";
+import Messages from "../screens/tabs/maintabs/Messages";
 
 const AppBottomTabNavigator = createMaterialTopTabNavigator(
   {
@@ -26,7 +27,17 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
           <Icon name="group" color={tintColor} size={24} />
         )
       }
-    },FavoritesScreen: {
+    },
+    MessagesScreen: {
+      screen: Messages,
+      navigationOptions: {
+        tabBarLabel: "Mesajlar",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="email" color={tintColor} size={24} />
+        )
+      }
+    },
+    FavoritesScreen: {
       screen: FavoriteTeams,
       //screen: FavoritesTabNavigator,
       navigationOptions: {
