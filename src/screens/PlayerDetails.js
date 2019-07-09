@@ -8,13 +8,34 @@ import {
   TouchableOpacity,
   ScrollView
 } from "react-native";
+import SinglePlayerPreviouslyPlayedTeam from "../components/player/SinglePlayerPreviouslyPlayedTeam";
 
 class PlayerDetails extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      playerPreviouslyPlayedTeams: [
+        { name: "Galatasaray", logo: "" },
+        { name: "Beşiktaş", logo: "" },
+        { name: "Vanspor", logo: "" },
+        { name: "Barcelona", logo: "" }
+      ]
+    };
   }
+
+  renderPreviouslyPlayedTeams = () => {
+    return this.state.playerPreviouslyPlayedTeams.map(
+      (previouslyPlayedTeam, index) => {
+        return (
+          <SinglePlayerPreviouslyPlayedTeam
+            key={index}
+            previouslyPlayedTeam={previouslyPlayedTeam}
+          />
+        );
+      }
+    );
+  };
 
   render() {
     const { navigation } = this.props;
@@ -75,19 +96,55 @@ class PlayerDetails extends Component {
             </View>
           </View>
 
-          <View style={styles.previousTeams}>
-            <Text>Önceki oynadığı takımlar</Text>
-            <Text>---</Text>
-            <Text>---</Text>
-            <Text>---</Text>
-            <Text>---</Text>
+          <View style={styles.statistics}>
+            <Text style={{ fontWeight: "500" }}>İstatistikler</Text>
+            <View style={styles.statisticsContainer}>
+              <View style={styles.numberOfGames}>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>Maç Sayısı</Text>
+                </View>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>7</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  borderLeftWidth: 2,
+                  borderColor: "green",
+                  height: 40,
+                  width: 2
+                }}
+              />
+              <View style={styles.numberOfScores}>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>Gol Sayısı</Text>
+                </View>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>2</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  borderLeftWidth: 2,
+                  borderColor: "green",
+                  height: 40,
+                  width: 2
+                }}
+              />
+              <View style={styles.numberOfAssists}>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>Assist Sayısı</Text>
+                </View>
+                <View>
+                  <Text style={{ margin: 2, fontSize: 18 }}>3</Text>
+                </View>
+              </View>
+            </View>
           </View>
 
-          <View style={styles.statistics}>
-            <Text>İstatistikler</Text>
-            <Text>Maç sayısı</Text>
-            <Text>Gol sayısı</Text>
-            <Text>Asist sayısı</Text>
+          <View style={styles.previousTeams}>
+            <Text>Önceki oynadığı takımlar</Text>
+            {this.renderPreviouslyPlayedTeams()}
           </View>
 
           <View style={styles.comments}>
@@ -129,7 +186,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 200,
     backgroundColor: "blue",
-    padding: 8,
+    padding: 4,
     margin: 8
   },
   header: {
@@ -147,7 +204,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     //height: 200,
-    width: 100,
+    width: 120,
     backgroundColor: "yellow"
   },
   details: {
@@ -177,10 +234,18 @@ const styles = StyleSheet.create({
     backgroundColor: "red"
   },
   statistics: {
-    backgroundColor: "grey",
+    //backgroundColor: "grey",
     padding: 4,
     margin: 8
   },
+  statisticsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around"
+  },
+  numberOfGames: { alignItems: "center" },
+  numberOfScores: { alignItems: "center" },
+  numberOfAssists: { alignItems: "center" },
   comments: {
     backgroundColor: "yellow",
     padding: 8,
