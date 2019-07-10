@@ -9,7 +9,11 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createSwitchNavigator
+} from "react-navigation";
 import Login from "./src/screens/auth/Login";
 import Signup from "./src/screens/auth/Signup";
 import AppBottomTabNavigator from "./src/navigation/AppBottomTabNavigator";
@@ -60,7 +64,45 @@ export default class App extends Component<Props> {
   }
 }
 
-const RootNavigator = createStackNavigator(
+const AppStack = createStackNavigator(
+  {
+    UserTabNavigator: AppBottomTabNavigator,
+    TeamDetailsScreen: TeamDetails,
+    EditProfileScreen: EditProfile,
+    CreatePlayerProfileScreen: CreatePlayerProfile,
+    CreateTeamScreen: CreateTeam,
+    PreviousGamesScreen: PreviousGames,
+    SettingsScreen: Settings,
+    PlayerDetailsScreen: PlayerDetails,
+    ChatScreen: Chat
+  },
+  {
+    initialRouteName: "UserTabNavigator",
+    //initialRouteName: "UserSignupScreen",
+    headerMode: "none"
+  }
+);
+
+const AuthStack = createStackNavigator(
+  {
+    UserLoginScreen: Login,
+    UserSignupScreen: Signup,
+    ForgotPasswordScreen: ForgotPassword
+  },
+  {
+    initialRouteName: "UserLoginScreen",
+    //initialRouteName: "UserSignupScreen",
+    headerMode: "none"
+  }
+);
+
+const RootNavigator = createSwitchNavigator({
+  AuthStack: AuthStack,
+  AppStack: AppStack,
+  
+});
+
+const RootNavigator2 = createStackNavigator(
   {
     UserLoginScreen: Login,
     UserSignupScreen: Signup,
