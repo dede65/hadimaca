@@ -34,9 +34,10 @@ export default SingleTeamLineupPlayer;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#EEEEEE",
     borderBottomWidth: 1,
     borderColor: "green",
-    marginBottom: 2
+    //marginBottom: 2
   },
   row: {
     flexDirection: "row",
