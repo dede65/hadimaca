@@ -66,9 +66,6 @@ class FavoriteTeams extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Favori Takımlar</Text>
-        </View>
         <View
           style={{ flex: 1, }}
         >
@@ -95,11 +92,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  header: {
-    backgroundColor: "green",
-    height: 64,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  headerTitle: { color: "#fff", fontSize: 18 }
 });
