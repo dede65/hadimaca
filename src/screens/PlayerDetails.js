@@ -70,10 +70,10 @@ class PlayerDetails extends Component {
               />
             </View>
             <View style={styles.details}>
-              <View style={styles.playerTeam}>
+              {/*<View style={styles.playerTeam}>
                 <Image style={styles.playerTeamLogo} />
-                <Text>Takımı</Text>
-              </View>
+                <Text>Takım Adı</Text>
+              </View>*/}
               <View />
               <View style={styles.info}>
                 <View style={{ flex: 1 }}>
@@ -85,6 +85,7 @@ class PlayerDetails extends Component {
                   <Text>Boy</Text>
                   <Text>Kilo</Text>
                   <Text>Ayak</Text>
+                  <Text>Oynadığı Takım</Text>
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text>{firstName}</Text>
@@ -95,6 +96,7 @@ class PlayerDetails extends Component {
                   <Text>{height}</Text>
                   <Text>{weight}</Text>
                   <Text>{foot}</Text>
+                  <Text>Juventus</Text>
                 </View>
               </View>
             </View>
@@ -105,7 +107,7 @@ class PlayerDetails extends Component {
                 style={styles.addToFavoritesButton}
                 onPress={this.addToFavorites}
               >
-                <Text style={{ fontSize: 18, color: "#212121" }}>
+                <Text style={{ fontSize: 18, color: "#fff" }}>
                   Favorilere ekle
                 </Text>
               </TouchableOpacity>
@@ -115,7 +117,7 @@ class PlayerDetails extends Component {
                 style={styles.sendMessageButton}
                 onPress={this.sendMessage}
               >
-                <Text style={{ fontSize: 18, color: "#212121" }}>
+                <Text style={{ fontSize: 18, color: "#fff" }}>
                   Mesaj gönder
                 </Text>
               </TouchableOpacity>
@@ -211,8 +213,8 @@ const styles = StyleSheet.create({
   playerInfoContainer: {
     flexDirection: "row",
     height: 200,
-    backgroundColor: "blue",
-    padding: 4,
+    //backgroundColor: "blue",
+    //padding: 4,
     margin: 8
   },
   header: {
@@ -224,7 +226,7 @@ const styles = StyleSheet.create({
   headerTitle: { color: "#fff", fontSize: 18 },
   scrollview: { marginBottom: 60 },
   imageContainer: {
-    backgroundColor: "red",
+    //backgroundColor: "red",
     padding: 2
   },
   image: {
@@ -235,7 +237,7 @@ const styles = StyleSheet.create({
   },
   details: {
     flex: 1,
-    backgroundColor: "yellow",
+    //backgroundColor: "yellow",
     padding: 2
   },
   playerTeam: {
@@ -256,8 +258,8 @@ const styles = StyleSheet.create({
   },
   previousTeams: {
     padding: 8,
-    margin: 8,
-    backgroundColor: "red"
+    margin: 4,
+    //backgroundColor: "red"
   },
   addToFavAndSendMessage: {
     flexDirection: "row",
@@ -265,25 +267,27 @@ const styles = StyleSheet.create({
   },
   addToFavorites: {
     flex: 1,
-    padding: 8,
+    //padding: 2,
     marginRight: 4,
     borderWidth: 1,
     borderColor: "green",
-    alignItems: "center"
-    //backgroundColor: "blue"
+    alignItems: "center",
+    backgroundColor: "green"
   },
   addToFavoritesButton: {
-    alignItems: "center"
+    alignItems: "center",
+    padding:8
   },
   sendMessage: {
     flex: 1,
-    padding: 8,
+    //padding: 2,
     marginLeft: 4,
     borderWidth: 1,
     borderColor: "green",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "green",
   },
-  sendMessageButton: { alignItems: "center" },
+  sendMessageButton: { alignItems: "center",padding:8 },
   statistics: {
     //backgroundColor: "grey",
     padding: 4,
