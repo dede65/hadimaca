@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Profile from "../screens/tabs/maintabs/Profile";
 import { createMaterialTopTabNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import FavoriteTeams from "../screens/tabs/maintabs/FavoriteTeams";
+import FavoritesTabNavigator from "../navigation/FavoritesTabNavigator";
+import Favorites from "../screens/tabs/maintabs/Favorites";
 import Teams from "../screens/tabs/maintabs/Teams";
 import Players from "../screens/tabs/maintabs/Players";
 import Messages from "../screens/tabs/maintabs/Messages";
@@ -38,8 +39,8 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
       }
     },
     FavoritesScreen: {
-      screen: FavoriteTeams,
-      //screen: FavoritesTabNavigator,
+      //screen:Favorites,
+      screen: FavoritesTabNavigator,
       navigationOptions: {
         tabBarLabel: "Favoriler",
         tabBarIcon: ({ tintColor }) => (
