@@ -54,9 +54,7 @@ export default class App extends Component<Props> {
   };
 
   render() {
-    return (
-          <AppContainer />
-    );
+    return <AppContainer />;
   }
 }
 
@@ -92,11 +90,15 @@ const AuthStack = createStackNavigator(
   }
 );
 
-const RootNavigator = createSwitchNavigator({
-  AuthStack: AuthStack,
-  AppStack: AppStack,
-  
-});
+const RootNavigator = createSwitchNavigator(
+  {
+    AuthStack: AuthStack,
+    AppStack: AppStack
+  },
+  {
+    initialRouteName: "AuthStack"
+  }
+);
 
 const RootNavigator2 = createStackNavigator(
   {
