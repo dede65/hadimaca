@@ -42,7 +42,7 @@ class UserLogin extends Component {
       if (this.state.loginError) {
         console.log("Login error:", this.state.loginError);
       } else {
-        this.props.navigation.navigate("UserTabNavigator");
+        this.props.navigation.navigate("AppStack");
         this.setState({
           email: "",
           password: ""
