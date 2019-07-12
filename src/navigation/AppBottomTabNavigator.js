@@ -3,7 +3,6 @@ import Profile from "../screens/tabs/maintabs/Profile";
 import { createMaterialTopTabNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import FavoritesTabNavigator from "../navigation/FavoritesTabNavigator";
-import Favorites from "../screens/tabs/maintabs/Favorites";
 import Teams from "../screens/tabs/maintabs/Teams";
 import Players from "../screens/tabs/maintabs/Players";
 import Messages from "../screens/tabs/maintabs/Messages";
