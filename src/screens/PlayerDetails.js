@@ -24,6 +24,10 @@ class PlayerDetails extends Component {
     };
   }
 
+  sendMessage = () => {
+    this.props.navigation.navigate("ChatScreen");
+  };
+
   renderPreviouslyPlayedTeams = () => {
     return this.state.playerPreviouslyPlayedTeams.map(
       (previouslyPlayedTeam, index) => {
@@ -93,6 +97,28 @@ class PlayerDetails extends Component {
                   <Text>{foot}</Text>
                 </View>
               </View>
+            </View>
+          </View>
+          <View style={styles.addToFavAndSendMessage}>
+            <View style={styles.addToFavorites}>
+              <TouchableOpacity
+                style={styles.addToFavoritesButton}
+                onPress={this.addToFavorites}
+              >
+                <Text style={{ fontSize: 18, color: "#212121" }}>
+                  Favorilere ekle
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.sendMessage}>
+              <TouchableOpacity
+                style={styles.sendMessageButton}
+                onPress={this.sendMessage}
+              >
+                <Text style={{ fontSize: 18, color: "#212121" }}>
+                  Mesaj gönder
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
 
@@ -233,6 +259,31 @@ const styles = StyleSheet.create({
     margin: 8,
     backgroundColor: "red"
   },
+  addToFavAndSendMessage: {
+    flexDirection: "row",
+    padding: 8
+  },
+  addToFavorites: {
+    flex: 1,
+    padding: 8,
+    marginRight: 4,
+    borderWidth: 1,
+    borderColor: "green",
+    alignItems: "center"
+    //backgroundColor: "blue"
+  },
+  addToFavoritesButton: {
+    alignItems: "center"
+  },
+  sendMessage: {
+    flex: 1,
+    padding: 8,
+    marginLeft: 4,
+    borderWidth: 1,
+    borderColor: "green",
+    alignItems: "center"
+  },
+  sendMessageButton: { alignItems: "center" },
   statistics: {
     //backgroundColor: "grey",
     padding: 4,
