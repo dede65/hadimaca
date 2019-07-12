@@ -41,15 +41,17 @@ export default SingleTeamPreviousGame;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#EEEEEE",
+    marginVertical:2,
+    paddingVertical:4
   },
   content: {
     flex: 1,
     flexDirection: "row",
-    marginBottom: 4
   },
   homeTeam: {
-    backgroundColor: "yellow",
+    //backgroundColor: "yellow",
     flex: 4,
     flexDirection: "row",
     alignItems: "center",
@@ -72,12 +74,12 @@ const styles = StyleSheet.create({
   seperator: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "grey",
+    //backgroundColor: "grey",
     justifyContent: "center"
   },
 
   awayTeam: {
-    backgroundColor: "yellow",
+    //backgroundColor: "yellow",
     flex: 4,
     flexDirection: "row",
     alignItems: "center",
