@@ -209,7 +209,7 @@ class TeamDetails extends Component {
                 style={styles.addToFavoritesButton}
                 onPress={this.addToFavorites}
               >
-                <Text style={{ fontSize: 18, color: "#212121" }}>
+                <Text style={{ fontSize: 18, color: "#fff" }}>
                   Favorilere ekle
                 </Text>
               </TouchableOpacity>
@@ -219,7 +219,7 @@ class TeamDetails extends Component {
                 style={styles.sendMessageButton}
                 onPress={this.sendMessage}
               >
-                <Text style={{ fontSize: 18, color: "#212121" }}>
+                <Text style={{ fontSize: 18, color: "#fff" }}>
                   Mesaj gönder
                 </Text>
               </TouchableOpacity>
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
   teamInfoContainer: {
     flexDirection: "row",
     height: 200,
-    backgroundColor: "blue",
+    //backgroundColor: "blue",
     //padding: 8,
     margin: 8
   },
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
   headerTitle: { color: "#fff", fontSize: 18 },
   scrollview: {},
   imageContainer: {
-    backgroundColor: "red",
+    //backgroundColor: "red",
     padding: 2
   },
   image: {
@@ -337,11 +337,11 @@ const styles = StyleSheet.create({
   },
   teamDetails: {
     flex: 1,
-    backgroundColor: "yellow",
+    //backgroundColor: "yellow",
     padding: 2
   },
   basicDetails: {
-    backgroundColor: "grey",
+    backgroundColor: "#EEEEEE",
     alignItems: "center",
     borderBottomWidth: 1,
     borderColor: "green"
@@ -361,29 +361,31 @@ const styles = StyleSheet.create({
   },
   addToFavorites: {
     flex: 1,
-    padding: 8,
+    //padding: 2,
     marginRight: 4,
     borderWidth: 1,
     borderColor: "green",
-    alignItems: "center"
-    //backgroundColor: "blue"
+    alignItems: "center",
+    backgroundColor: "green"
   },
   addToFavoritesButton: {
-    alignItems: "center"
+    alignItems: "center",
+    padding:8
   },
   sendMessage: {
     flex: 1,
-    padding: 8,
+    //padding: 2,
     marginLeft: 4,
     borderWidth: 1,
     borderColor: "green",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "green",
   },
-  sendMessageButton: { alignItems: "center" },
+  sendMessageButton: { alignItems: "center",padding:8 },
   previousGames: {
     padding: 8,
-    margin: 8,
-    backgroundColor: "red"
+    margin: 4,
+    //backgroundColor: "red"
   },
   statistics: {
     //backgroundColor: "grey",
@@ -399,7 +401,7 @@ const styles = StyleSheet.create({
   draw: { alignItems: "center" },
   loss: { alignItems: "center" },
   footballers: {
-    backgroundColor: "red",
+    //backgroundColor: "red",
     padding: 4,
     margin: 8
   },
