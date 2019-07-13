@@ -8,7 +8,9 @@ class Messages extends Component {
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Mesajlar</Text>
         </View>
-        <Text>Yeni mesaj yok.</Text>
+        <View style={styles.content}>
+          <Text>Yeni mesaj yok.</Text>
+        </View>
       </View>
     );
   }
@@ -25,5 +27,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  headerTitle: { color: "#fff", fontSize: 18 }
+  headerTitle: { color: "#fff", fontSize: 18 },
+  content:{
+    flex:1,
+    backgroundColor: "#eeeeee",
+    padding:4
+  }
 });
