@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ScrollView
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import SinglePlayerPreviouslyPlayedTeam from "../components/player/SinglePlayerPreviouslyPlayedTeam";
 
 class PlayerDetails extends Component {
@@ -16,10 +17,9 @@ class PlayerDetails extends Component {
 
     this.state = {
       playerPreviouslyPlayedTeams: [
-        { name: "Galatasaray", logo: "" },
-        { name: "Beşiktaş", logo: "" },
-        { name: "Vanspor", logo: "" },
-        { name: "Barcelona", logo: "" }
+        { name: "Galatasaray", logo: require("../assets/team-logos/galatasaray.png")  },
+        { name: "Beşiktaş", logo: require("../assets/team-logos/kasimpasa.png") },
+        { name: "Ankaragücü", logo: require("../assets/team-logos/ankaragucu.png") },
       ]
     };
   }
@@ -59,7 +59,15 @@ class PlayerDetails extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>{firstName + " " + lastName}</Text>
+          <View style={styles.headerLeftButton}>
+            <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
+              <Icon name="chevron-left" color="white" size={48} />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flex: 3,alignItems:"center",justifyContent: 'center', }}>
+            <Text style={styles.headerTitle}>{firstName+" "+lastName}</Text>
+          </View>
+          <View style={styles.headerRightButton} />
         </View>
         <ScrollView style={styles.scrollview}>
           <View style={styles.playerInfoContainer}>
@@ -218,12 +226,18 @@ const styles = StyleSheet.create({
     margin: 8
   },
   header: {
+    flexDirection: "row",
     backgroundColor: "green",
     height: 64,
     alignItems: "center",
     justifyContent: "center"
   },
+  headerLeftButton: {
+    //backgroundColor: "yellow",
+    flex: 1
+  },
   headerTitle: { color: "#fff", fontSize: 18 },
+  headerRightButton: { backgroundColor: "yellow", flex: 1 },
   scrollview: { marginBottom: 60 },
   imageContainer: {
     //backgroundColor: "red",
@@ -271,12 +285,14 @@ const styles = StyleSheet.create({
     marginRight: 4,
     borderWidth: 1,
     borderColor: "green",
-    alignItems: "center",
-    backgroundColor: "green"
+    justifyContent: 'center',
+    backgroundColor: "green",
   },
   addToFavoritesButton: {
+    flex:1,
     alignItems: "center",
-    padding:8
+    padding:8,
+    justifyContent: 'center',
   },
   sendMessage: {
     flex: 1,
@@ -284,10 +300,11 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     borderWidth: 1,
     borderColor: "green",
-    alignItems: "center",
+    //alignItems: "center",
+    justifyContent: 'center',
     backgroundColor: "green",
   },
-  sendMessageButton: { alignItems: "center",padding:8 },
+  sendMessageButton: {flex:1, alignItems: "center",justifyContent: 'center' },
   statistics: {
     //backgroundColor: "grey",
     padding: 4,
