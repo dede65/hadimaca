@@ -22,7 +22,7 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
     PlayersScreen: {
       screen: Players,
       navigationOptions: {
-        tabBarLabel: "Geçmiş rezervasyonlar",
+        tabBarLabel: "Oyuncular",
         tabBarIcon: ({ tintColor }) => (
           <Icon name="group" color={tintColor} size={24} />
         )
@@ -62,12 +62,13 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
     backBehavior: "none",
     tabBarPosition: "bottom",
     tabBarOptions: {
+      upperCaseLabel:false,
       tabStyle: {
         height: 64,
-        backgroundColor: "green"
+        //backgroundColor: "green"
       },
       labelStyle: {
-        fontSize: 10
+        fontSize: 8
       },
       activeTintColor: "white",
       inactiveTintColor: "white",
@@ -78,7 +79,7 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
         height: 0
       },
       showIcon: true,
-      showLabel: false
+      showLabel: true
     }
   }
 );
