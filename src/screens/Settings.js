@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import firebase from "react-native-firebase"
+import firebase from "react-native-firebase";
 class Settings extends Component {
   static navigationOptions = ({ navigaiton }) => {
     return {
@@ -17,13 +17,25 @@ class Settings extends Component {
     };
   };
 
-  
-
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Ayarlar</Text>
+          <View style={styles.headerLeftButton}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.goBack();
+              }}
+            >
+              <Icon name="chevron-left" color="white" size={48} />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{ flex: 3, alignItems: "center", justifyContent: "center" }}
+          >
+            <Text style={styles.headerTitle}>Ayarlar</Text>
+          </View>
+          <View style={styles.headerRightButton} />
         </View>
         <ScrollView style={styles.scrollview}>
           <TouchableOpacity
@@ -80,12 +92,18 @@ const styles = StyleSheet.create({
     flex: 1
   },
   header: {
+    flexDirection: "row",
     backgroundColor: "green",
     height: 64,
     alignItems: "center",
     justifyContent: "center"
   },
+  headerLeftButton: {
+    //backgroundColor: "yellow",
+    flex: 1
+  },
   headerTitle: { color: "#fff", fontSize: 18 },
+  headerRightButton: { backgroundColor: "yellow", flex: 1 },
   editProfileButton: {
     alignItems: "center",
     //backgroundColor: "yellow",
@@ -94,7 +112,7 @@ const styles = StyleSheet.create({
     height: 48,
     borderBottomWidth: 0.5,
     borderColor: "green",
-    paddingHorizontal: 12,
+    paddingHorizontal: 12
   },
   createPlayerProfileButton: {
     alignItems: "center",
@@ -104,7 +122,7 @@ const styles = StyleSheet.create({
     height: 48,
     borderBottomWidth: 0.5,
     borderColor: "green",
-    paddingHorizontal: 12,
+    paddingHorizontal: 12
   },
   createTeamButton: {
     alignItems: "center",
@@ -114,6 +132,6 @@ const styles = StyleSheet.create({
     height: 48,
     borderBottomWidth: 0.5,
     borderColor: "green",
-    paddingHorizontal: 12,
-  },
+    paddingHorizontal: 12
+  }
 });

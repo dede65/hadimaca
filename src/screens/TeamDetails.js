@@ -136,7 +136,15 @@ class TeamDetails extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>{nameOfTheTeam}</Text>
+          <View style={styles.headerLeftButton}>
+            <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
+              <Icon name="chevron-left" color="white" size={48} />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flex: 3,alignItems:"center",justifyContent: 'center', }}>
+            <Text style={styles.headerTitle}>{nameOfTheTeam}</Text>
+          </View>
+          <View style={styles.headerRightButton} />
         </View>
         <ScrollView style={styles.scrollview}>
           <View style={styles.teamInfoContainer}>
@@ -145,7 +153,9 @@ class TeamDetails extends Component {
             </View>
             <View style={styles.teamDetails}>
               <View style={styles.basicDetails}>
-                <Text>Takım Bilgileri</Text>
+                <Text style={{ color: "#212121", fontWeight: "500" }}>
+                  Takım Bilgileri
+                </Text>
               </View>
               <View />
               <View style={styles.info}>
@@ -225,7 +235,7 @@ class TeamDetails extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          
+
           <View style={styles.statistics}>
             <Text style={{ fontWeight: "500" }}>İstatistikler</Text>
             <View style={styles.statisticsContainer}>
@@ -238,7 +248,12 @@ class TeamDetails extends Component {
                 </View>
               </View>
               <View
-                style={{ borderLeftWidth: 2, borderColor: "green", height:40,width: 2 }}
+                style={{
+                  borderLeftWidth: 2,
+                  borderColor: "green",
+                  height: 40,
+                  width: 2
+                }}
               />
               <View style={styles.draw}>
                 <View>
@@ -249,7 +264,12 @@ class TeamDetails extends Component {
                 </View>
               </View>
               <View
-                style={{ borderLeftWidth: 2, borderColor: "green", height:40, width: 2 }}
+                style={{
+                  borderLeftWidth: 2,
+                  borderColor: "green",
+                  height: 40,
+                  width: 2
+                }}
               />
               <View style={styles.loss}>
                 <View>
@@ -318,12 +338,18 @@ const styles = StyleSheet.create({
     margin: 8
   },
   header: {
+    flexDirection: "row",
     backgroundColor: "green",
     height: 64,
     alignItems: "center",
     justifyContent: "center"
   },
+  headerLeftButton: {
+    //backgroundColor: "yellow",
+    flex: 1
+  },
   headerTitle: { color: "#fff", fontSize: 18 },
+  headerRightButton: { backgroundColor: "yellow", flex: 1 },
   scrollview: {},
   imageContainer: {
     //backgroundColor: "red",
@@ -343,8 +369,9 @@ const styles = StyleSheet.create({
   basicDetails: {
     backgroundColor: "#EEEEEE",
     alignItems: "center",
-    borderBottomWidth: 1,
-    borderColor: "green"
+    //borderBottomWidth: 1,
+    borderColor: "green",
+    padding: 4
   },
   playerTeamLogo: {
     backgroundColor: "blue",
@@ -365,12 +392,14 @@ const styles = StyleSheet.create({
     marginRight: 4,
     borderWidth: 1,
     borderColor: "green",
-    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "green"
   },
   addToFavoritesButton: {
+    flex: 1,
     alignItems: "center",
-    padding:8
+    padding: 8,
+    justifyContent: "center"
   },
   sendMessage: {
     flex: 1,
@@ -378,13 +407,18 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     borderWidth: 1,
     borderColor: "green",
-    alignItems: "center",
-    backgroundColor: "green",
+    //alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "green"
   },
-  sendMessageButton: { alignItems: "center",padding:8 },
+  sendMessageButton: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
   previousGames: {
     padding: 8,
-    margin: 4,
+    margin: 4
     //backgroundColor: "red"
   },
   statistics: {
