@@ -11,7 +11,7 @@ class SinglePlayerPreviouslyPlayedTeam extends Component {
           <View style={styles.row}>
             <View style={{ flexDirection: "row",alignItems:"center", justifyContent: "center" }}>
               <View style={styles.logoContainer}>
-                <Image style={styles.logo} />
+                <Image style={styles.logo} source={previouslyPlayedTeam.logo} />
               </View>
               <View style={styles.teamName}>
                 <Text style={{ padding: 2 }}>{previouslyPlayedTeam.name}</Text>
@@ -44,12 +44,13 @@ const styles = StyleSheet.create({
     margin: 4
   },
   logo: {
-    backgroundColor: "grey",
-    height: 30,
-    width: 30,
-    borderRadius: 15,
+    backgroundColor: "#fff",
+    height: 40,
+    width: 40,
+    borderRadius: 20,
     borderColor: "white",
-    borderWidth: 2
+    borderWidth: 1,
+    padding:4
   },
   teamName: { margin: 2 }
 });
