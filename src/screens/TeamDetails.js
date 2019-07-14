@@ -11,6 +11,7 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import SingleTeamLineupPlayer from "../components/SingleTeamLineupPlayer";
 import SingleTeamPreviousGame from "../components/SingleTeamPreviousGame";
+import SingleComment from "../components/SingleComment";
 
 class TeamDetails extends Component {
   constructor(props) {
@@ -98,6 +99,56 @@ class TeamDetails extends Component {
             score: 1
           }
         }
+      ],
+      comments: [
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        }
       ]
     };
   }
@@ -115,6 +166,12 @@ class TeamDetails extends Component {
   renderTeamLineup = () => {
     return this.state.teamLineup.map((player, index) => {
       return <SingleTeamLineupPlayer key={index} player={player} />;
+    });
+  };
+
+  renderComments = () => {
+    return this.state.comments.map((comment,index) => {
+      return <SingleComment key={index} comment={comment} />;
     });
   };
 
@@ -137,11 +194,17 @@ class TeamDetails extends Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerLeftButton}>
-            <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.goBack();
+              }}
+            >
               <Icon name="chevron-left" color="white" size={48} />
             </TouchableOpacity>
           </View>
-          <View style={{ flex: 3,alignItems:"center",justifyContent: 'center', }}>
+          <View
+            style={{ flex: 3, alignItems: "center", justifyContent: "center" }}
+          >
             <Text style={styles.headerTitle}>{nameOfTheTeam}</Text>
           </View>
           <View style={styles.headerRightButton} />
@@ -294,21 +357,7 @@ class TeamDetails extends Component {
 
           <View style={styles.comments}>
             <Text style={{ fontWeight: "500" }}>Yorumlar</Text>
-            <View>
-              <Text>yorum 1</Text>
-            </View>
-            <View>
-              <Text>yorum 2</Text>
-            </View>
-            <View>
-              <Text>yorum 3</Text>
-            </View>
-            <View>
-              <Text>yorum 4</Text>
-            </View>
-            <View>
-              <Text>yorum 4</Text>
-            </View>
+            {this.renderComments()}
             <View style={styles.comment}>
               <TextInput
                 placeholder="Yorum yap"
@@ -440,9 +489,9 @@ const styles = StyleSheet.create({
     margin: 8
   },
   comments: {
-    backgroundColor: "yellow",
+    //backgroundColor: "yellow",
     padding: 8,
-    margin: 8
+    margin: 4
   },
   comment: {
     flexDirection: "row",
