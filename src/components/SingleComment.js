@@ -16,7 +16,7 @@ class SingleComment extends Component {
       <View style={styles.container}>
         <View style={styles.content}>
           <View style={styles.imageContainer}>
-            <Image style={styles.image} />
+            <Image style={styles.image} source={commentOwnerPhoto}/>
           </View>
           <View style={styles.comment}>
             <View style={styles.commentDetails}>
