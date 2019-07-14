@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import SinglePlayerPreviouslyPlayedTeam from "../components/player/SinglePlayerPreviouslyPlayedTeam";
+import SingleComment from "../components/SingleComment";
 
 class PlayerDetails extends Component {
   constructor(props) {
@@ -17,9 +18,68 @@ class PlayerDetails extends Component {
 
     this.state = {
       playerPreviouslyPlayedTeams: [
-        { name: "Galatasaray", logo: require("../assets/team-logos/galatasaray.png")  },
-        { name: "Beşiktaş", logo: require("../assets/team-logos/kasimpasa.png") },
-        { name: "Ankaragücü", logo: require("../assets/team-logos/ankaragucu.png") },
+        {
+          name: "Galatasaray",
+          logo: require("../assets/team-logos/galatasaray.png")
+        },
+        {
+          name: "Beşiktaş",
+          logo: require("../assets/team-logos/kasimpasa.png")
+        },
+        {
+          name: "Ankaragücü",
+          logo: require("../assets/team-logos/ankaragucu.png")
+        }
+      ],
+      comments: [
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        },
+        {
+          commentOwner: "Uğur DEDE",
+          commentOwnerPhoto: "",
+          commentText: "Yeni yorum",
+          commentDate: "",
+          commentLikes: 14,
+          commentDislikes: 3
+        }
       ]
     };
   }
@@ -41,6 +101,12 @@ class PlayerDetails extends Component {
     );
   };
 
+  renderComments = () => {
+    return this.state.comments.map((comment, index) => {
+      return <SingleComment key={index} comment={comment} />;
+    });
+  };
+
   render() {
     const { navigation } = this.props;
     const player = navigation.getParam("player");
@@ -60,12 +126,18 @@ class PlayerDetails extends Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerLeftButton}>
-            <TouchableOpacity onPress={()=>{this.props.navigation.goBack()}}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.goBack();
+              }}
+            >
               <Icon name="chevron-left" color="white" size={48} />
             </TouchableOpacity>
           </View>
-          <View style={{ flex: 3,alignItems:"center",justifyContent: 'center', }}>
-            <Text style={styles.headerTitle}>{firstName+" "+lastName}</Text>
+          <View
+            style={{ flex: 3, alignItems: "center", justifyContent: "center" }}
+          >
+            <Text style={styles.headerTitle}>{firstName + " " + lastName}</Text>
           </View>
           <View style={styles.headerRightButton} />
         </View>
@@ -185,21 +257,7 @@ class PlayerDetails extends Component {
 
           <View style={styles.comments}>
             <Text>Yorumlar</Text>
-            <View>
-              <Text>yorum 1</Text>
-            </View>
-            <View>
-              <Text>yorum 2</Text>
-            </View>
-            <View>
-              <Text>yorum 3</Text>
-            </View>
-            <View>
-              <Text>yorum 4</Text>
-            </View>
-            <View>
-              <Text>yorum 4</Text>
-            </View>
+            {this.renderComments()}
           </View>
         </ScrollView>
         <View style={styles.comment}>
@@ -272,7 +330,7 @@ const styles = StyleSheet.create({
   },
   previousTeams: {
     padding: 8,
-    margin: 4,
+    margin: 4
     //backgroundColor: "red"
   },
   addToFavAndSendMessage: {
@@ -285,14 +343,14 @@ const styles = StyleSheet.create({
     marginRight: 4,
     borderWidth: 1,
     borderColor: "green",
-    justifyContent: 'center',
-    backgroundColor: "green",
+    justifyContent: "center",
+    backgroundColor: "green"
   },
   addToFavoritesButton: {
-    flex:1,
+    flex: 1,
     alignItems: "center",
-    padding:8,
-    justifyContent: 'center',
+    padding: 8,
+    justifyContent: "center"
   },
   sendMessage: {
     flex: 1,
@@ -301,10 +359,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "green",
     //alignItems: "center",
-    justifyContent: 'center',
-    backgroundColor: "green",
+    justifyContent: "center",
+    backgroundColor: "green"
   },
-  sendMessageButton: {flex:1, alignItems: "center",justifyContent: 'center' },
+  sendMessageButton: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
   statistics: {
     //backgroundColor: "grey",
     padding: 4,
@@ -319,9 +381,9 @@ const styles = StyleSheet.create({
   numberOfScores: { alignItems: "center" },
   numberOfAssists: { alignItems: "center" },
   comments: {
-    backgroundColor: "yellow",
+    //backgroundColor: "yellow",
     padding: 8,
-    margin: 8
+    margin: 4
   },
   comment: {
     position: "absolute",
