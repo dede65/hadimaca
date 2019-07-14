@@ -62,18 +62,22 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
     backBehavior: "none",
     tabBarPosition: "bottom",
     tabBarOptions: {
-      upperCaseLabel:false,
+      upperCaseLabel: false,
       tabStyle: {
-        height: 64,
-        //backgroundColor: "green"
+        //height: 64
+        //backgroundColor: "red",
       },
+      iconStyle: {},
       labelStyle: {
-        fontSize: 8
+        fontSize: 8,
+        marginTop: 2,
+        marginBottom:2
       },
       activeTintColor: "white",
       inactiveTintColor: "white",
       style: {
-        backgroundColor: "green"
+        backgroundColor: "green",
+        margin: 0
       },
       indicatorStyle: {
         height: 0
