@@ -34,7 +34,7 @@ class PlayerDetails extends Component {
       comments: [
         {
           commentOwner: "Uğur DEDE",
-          commentOwnerPhoto: "",
+          commentOwnerPhoto: require("../assets/placeholder-person.png"),
           commentText: "Yeni yorum",
           commentDate: "",
           commentLikes: 14,
@@ -42,7 +42,7 @@ class PlayerDetails extends Component {
         },
         {
           commentOwner: "Uğur DEDE",
-          commentOwnerPhoto: "",
+          commentOwnerPhoto: require("../assets/placeholder-person.png"),
           commentText: "Yeni yorum",
           commentDate: "",
           commentLikes: 14,
@@ -50,7 +50,7 @@ class PlayerDetails extends Component {
         },
         {
           commentOwner: "Uğur DEDE",
-          commentOwnerPhoto: "",
+          commentOwnerPhoto: require("../assets/placeholder-person.png"),
           commentText: "Yeni yorum",
           commentDate: "",
           commentLikes: 14,
@@ -58,7 +58,7 @@ class PlayerDetails extends Component {
         },
         {
           commentOwner: "Uğur DEDE",
-          commentOwnerPhoto: "",
+          commentOwnerPhoto: require("../assets/placeholder-person.png"),
           commentText: "Yeni yorum",
           commentDate: "",
           commentLikes: 14,
@@ -66,7 +66,7 @@ class PlayerDetails extends Component {
         },
         {
           commentOwner: "Uğur DEDE",
-          commentOwnerPhoto: "",
+          commentOwnerPhoto: require("../assets/placeholder-person.png"),
           commentText: "Yeni yorum",
           commentDate: "",
           commentLikes: 14,
@@ -74,7 +74,7 @@ class PlayerDetails extends Component {
         },
         {
           commentOwner: "Uğur DEDE",
-          commentOwnerPhoto: "",
+          commentOwnerPhoto: require("../assets/placeholder-person.png"),
           commentText: "Yeni yorum",
           commentDate: "",
           commentLikes: 14,
