@@ -11,7 +11,7 @@ class SingleTeamLineupPlayer extends Component {
           <View style={styles.row}>
             <View style={{ flexDirection: "row" }}>
               <View style={styles.imageContainer}>
-                <Image style={styles.image} />
+                <Image style={styles.image} source={player.photoUrl} />
               </View>
               <View style={styles.playerDetails}>
                 <Text style={{ padding: 2 }}>
