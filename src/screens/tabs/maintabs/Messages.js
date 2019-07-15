@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet,FlatList, ScrollView } from "react-native";
 import SingleMessage from "../../../components/SingleMessage";
 
 class Messages extends Component {
@@ -14,97 +14,97 @@ class Messages extends Component {
       messages: [
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         },
         {
           messageSender: "Uğur Dede",
-          messageSenderPhoto: require("../../../assets/placeholder-person.png"),
+          messageSenderPhoto: "http://placeimg.com/140/140/people",
           messageText: "Yeni mesaj",
           messageSentDate: this.date
         }
@@ -121,14 +121,25 @@ class Messages extends Component {
     });
   };
 
+  renderItem = ({ item }) => {
+    return <SingleMessage message={item} />;
+  };
+
   render() {
+    if (this.state.messages.length === 0) return <Text>Yeni mesaj yok.</Text>;
     return (
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Mesajlar</Text>
         </View>
         <View style={styles.content}>
-          <ScrollView>{this.renderMessages()}</ScrollView>
+          {/*<ScrollView>{this.renderMessages()}</ScrollView>*/}
+          <FlatList
+            data={this.state.messages}
+            renderItem={this.renderItem}
+            //numColumns={2}
+            keyExtractor={(item, index) => index.toString()}
+          />
         </View>
       </View>
     );
