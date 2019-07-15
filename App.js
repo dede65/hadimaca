@@ -32,6 +32,7 @@ import PlayerDetails from "./src/screens/PlayerDetails";
 import Chat from "./src/screens/Chat";
 
 import NetInfo from "@react-native-community/netinfo";
+import PreviousPlayedGame from "./src/screens/PreviousPlayedGame";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -62,6 +63,7 @@ const AppStack = createStackNavigator(
   {
     UserTabNavigator: AppBottomTabNavigator,
     TeamDetailsScreen: TeamDetails,
+    PreviousPlayedGameScreen:PreviousPlayedGame,
     EditProfileScreen: EditProfile,
     CreatePlayerProfileScreen: CreatePlayerProfile,
     CreateTeamScreen: CreateTeam,
