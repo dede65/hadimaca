@@ -9,7 +9,7 @@ import {
   ScrollView
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import SinglePlayerPreviouslyPlayedTeam from "../components/player/SinglePlayerPreviouslyPlayedTeam";
+import SinglePlayerPreviousPlayedTeam from "../components/player/SinglePlayerPreviousPlayedTeam";
 import SingleComment from "../components/SingleComment";
 
 class PlayerDetails extends Component {
@@ -17,7 +17,7 @@ class PlayerDetails extends Component {
     super(props);
 
     this.state = {
-      playerPreviouslyPlayedTeams: [
+      playerPreviousPlayedTeams: [
         {
           name: "Galatasaray",
           logo: require("../assets/team-logos/galatasaray.png")
@@ -88,13 +88,13 @@ class PlayerDetails extends Component {
     this.props.navigation.navigate("ChatScreen");
   };
 
-  renderPreviouslyPlayedTeams = () => {
-    return this.state.playerPreviouslyPlayedTeams.map(
-      (previouslyPlayedTeam, index) => {
+  renderPreviousPlayedTeams = () => {
+    return this.state.playerPreviousPlayedTeams.map(
+      (previousPlayedTeam, index) => {
         return (
-          <SinglePlayerPreviouslyPlayedTeam
+          <SinglePlayerPreviousPlayedTeam
             key={index}
-            previouslyPlayedTeam={previouslyPlayedTeam}
+            previousPlayedTeam={previousPlayedTeam}
           />
         );
       }
@@ -252,7 +252,7 @@ class PlayerDetails extends Component {
 
           <View style={styles.previousTeams}>
             <Text>Önceki oynadığı takımlar</Text>
-            {this.renderPreviouslyPlayedTeams()}
+            {this.renderPreviousPlayedTeams()}
           </View>
 
           <View style={styles.comments}>
