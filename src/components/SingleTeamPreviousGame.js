@@ -1,12 +1,24 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { withNavigation } from "react-navigation";
 
 class SingleTeamPreviousGame extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+  onPress = () => {
+    const { previousGame } = this.props;
+    this.props.navigation.navigate("PreviousPlayedGameScreen", {
+      previousGame: previousGame
+    });
+  };
   render() {
-    const { previousGame } = this.props;  
+    const { previousGame } = this.props;
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.content}>
+        <TouchableOpacity style={styles.content} onPress={() => this.onPress()}>
           <View style={styles.homeTeam}>
             <View style={styles.homeTeamLogoContainer}>
               <Image style={styles.homeTeamLogo} />
@@ -37,18 +49,18 @@ class SingleTeamPreviousGame extends Component {
     );
   }
 }
-export default SingleTeamPreviousGame;
+export default withNavigation(SingleTeamPreviousGame);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#EEEEEE",
-    marginVertical:2,
-    paddingVertical:4
+    marginVertical: 2,
+    paddingVertical: 4
   },
   content: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "row"
   },
   homeTeam: {
     //backgroundColor: "yellow",
