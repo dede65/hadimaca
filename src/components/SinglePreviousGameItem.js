@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Image,TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 class SinglePreviousGameItem extends Component {
   constructor(props) {
@@ -8,11 +8,15 @@ class SinglePreviousGameItem extends Component {
     this.state = {};
   }
 
+  onPress = () => {
+    
+  };
+
   render() {
     console.log("previous game", this.props.previousGame);
     const { awayTeam, date, homeTeam } = this.props.previousGame;
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={() => this.onPress()}>
         <View style={{ alignItems: "center", justifyContent: "center" }}>
           <Text>{date}</Text>
         </View>

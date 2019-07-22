@@ -31,7 +31,7 @@ export default SinglePlayerPreviousPlayedTeam;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderColor: "green",
     //marginBottom: 2,
     backgroundColor: "#EEEEEE",
