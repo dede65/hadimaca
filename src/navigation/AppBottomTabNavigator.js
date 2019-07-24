@@ -28,15 +28,6 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
         )
       }
     },
-    MessagesScreen: {
-      screen: Messages,
-      navigationOptions: {
-        tabBarLabel: "Mesajlar",
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="email" color={tintColor} size={24} />
-        )
-      }
-    },
     FavoritesScreen: {
       //screen:Favorites,
       screen: FavoritesTabNavigator,
@@ -44,6 +35,15 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
         tabBarLabel: "Favoriler",
         tabBarIcon: ({ tintColor }) => (
           <Icon name="favorite" color={tintColor} size={24} />
+        )
+      }
+    },
+    MessagesScreen: {
+      screen: Messages,
+      navigationOptions: {
+        tabBarLabel: "Mesajlar",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="email" color={tintColor} size={24} />
         )
       }
     },
@@ -71,7 +71,7 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
       labelStyle: {
         fontSize: 8,
         marginTop: 2,
-        marginBottom:2
+        marginBottom: 2
       },
       activeTintColor: "white",
       inactiveTintColor: "white",
