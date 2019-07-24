@@ -350,7 +350,7 @@ class TeamDetails extends Component {
             {this.renderPreviousGames()}
           </View>
 
-          <View style={styles.footballers}>
+          <View style={styles.teamLineup}>
             <Text style={{ fontWeight: "500" }}>Kadro</Text>
             {this.renderTeamLineup()}
           </View>
@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
   wins: { alignItems: "center" },
   draw: { alignItems: "center" },
   loss: { alignItems: "center" },
-  footballers: {
+  teamLineup: {
     //backgroundColor: "red",
     padding: 4,
     margin: 8
