@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View, StatusBar } from "react-native";
 
 import {
   createStackNavigator,
@@ -33,6 +33,7 @@ import Chat from "./src/screens/Chat";
 
 import NetInfo from "@react-native-community/netinfo";
 import PreviousPlayedGame from "./src/screens/PreviousPlayedGame";
+import MyTeam from "./src/screens/MyTeam";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -55,7 +56,12 @@ export default class App extends Component<Props> {
   };
 
   render() {
-    return <AppContainer />;
+    return (
+      <View style={{ flex: 1 }}>
+        <StatusBar backgroundColor="#006400" barStyle="light-content" />
+        <AppContainer />
+      </View>
+    );
   }
 }
 
@@ -63,12 +69,13 @@ const AppStack = createStackNavigator(
   {
     UserTabNavigator: AppBottomTabNavigator,
     TeamDetailsScreen: TeamDetails,
-    PreviousPlayedGameScreen:PreviousPlayedGame,
+    PreviousPlayedGameScreen: PreviousPlayedGame,
     EditProfileScreen: EditProfile,
     CreatePlayerProfileScreen: CreatePlayerProfile,
     CreateTeamScreen: CreateTeam,
     PreviousGamesScreen: PreviousGames,
     SettingsScreen: Settings,
+    MyTeamScreen: MyTeam,
     PlayerDetailsScreen: PlayerDetails,
     ChatScreen: Chat
   },
