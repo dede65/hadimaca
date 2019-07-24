@@ -99,48 +99,6 @@ class Profile extends Component {
     }
   };
 
-  //get team status and update db
-  setTeamStatus = async isUserTeamOnline => {
-    console.log("isUserTeamOnline(): isOnline", isUserTeamOnline);
-    this.setState({ isUserTeamOnline: isUserTeamOnline }, async () => {
-      try {
-        const id = firebase.auth().currentUser.uid;
-        await firebase
-          .firestore()
-          .collection("teams")
-          .doc(id)
-          .set(
-            {
-              isUserTeamOnline: isUserTeamOnline
-            },
-            { merge: true }
-          );
-      } catch (error) {
-        console.log(" is user online: Error", error.message);
-      }
-    });
-  };
-
-  // get team's status and update status
-  getTeamStatus = async () => {
-    console.log("getTeamStatus():start");
-    try {
-      const uid = firebase.auth().currentUser.uid;
-      const querySnapshot = await firebase
-        .firestore()
-        .collection("teams")
-        .where("id", "==", uid)
-        .get();
-      console.log(
-        "getTeamStatus",
-        querySnapshot.docs[0]._data.isUserTeamOnline
-      );
-      this.setState({
-        isUserTeamOnline: querySnapshot.docs[0]._data.isUserTeamOnline
-      });
-    } catch (error) {}
-  };
-
   logout = async () => {
     try {
       await firebase.auth().signOut();
@@ -154,7 +112,7 @@ class Profile extends Component {
   componentDidMount = () => {
     this.getUserDetails();
     this.getPlayerStatus();
-    this.getTeamStatus();
+    
   };
 
   render() {
@@ -173,13 +131,13 @@ class Profile extends Component {
               <View
                 style={{
                   position: "absolute",
-                  bottom:9,
-                  right:9,
+                  bottom: 9,
+                  right: 9,
                   height: 24,
                   width: 24,
                   borderRadius: 20,
-                  borderWidth:2,
-                  borderColor:"#fff",
+                  borderWidth: 2,
+                  borderColor: "#fff",
                   backgroundColor: this.state.isPlayerOnline ? "green" : "red"
                 }}
               />
@@ -199,17 +157,18 @@ class Profile extends Component {
               value={this.state.isPlayerOnline}
             />
           </View>
-          <View style={styles.findMyTeam}>
+          <TouchableOpacity
+            style={styles.myTeamButton}
+            onPress={() => {
+              this.props.navigation.navigate("MyTeamScreen");
+            }}
+          >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ fontSize: 18, color: "#212121" }}>
-                Takımımı bulsunlar
-              </Text>
+              <Icon name="account-group" color="green" size={26} />
+              <Text style={{ fontSize: 16, marginLeft: 4 }}>Takımım</Text>
             </View>
-            <Switch
-              onValueChange={this.setTeamStatus}
-              value={this.state.isUserTeamOnline}
-            />
-          </View>
+            <Icon name="chevron-right" color="green" size={26} />
+          </TouchableOpacity>
           <TouchableOpacity
             style={styles.previousGames}
             onPress={() => {
@@ -294,6 +253,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12
   },
   findMyTeam: {
+    alignItems: "center",
+    //backgroundColor: "yellow",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    height: 48,
+    borderBottomWidth: 0.5,
+    borderColor: "green",
+    paddingHorizontal: 12
+  },
+  myTeamButton: {
     alignItems: "center",
     //backgroundColor: "yellow",
     flexDirection: "row",
