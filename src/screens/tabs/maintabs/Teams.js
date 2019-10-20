@@ -100,7 +100,7 @@ class Teams extends Component {
     return (
       <SingleTeamItem
         navigation={this.props.navigation}
-        singleTeam={item._data}
+        singleTeam={item.data()}
       />
     );
   };

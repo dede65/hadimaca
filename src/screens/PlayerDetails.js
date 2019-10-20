@@ -11,19 +11,23 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import SinglePlayerPreviousPlayedTeam from "../components/player/SinglePlayerPreviousPlayedTeam";
 import SingleComment from "../components/SingleComment";
+import { PLAYER_DETAILS_SCREEN } from "../utils/constants";
 
 class PlayerDetails extends Component {
   constructor(props) {
     super(props);
+    console.log("------------PlayerDetails.js Constructor------------");
 
     this.state = {
+      playerId: "",
+      playerEmail: "",
       playerPreviousPlayedTeams: [
         {
           name: "Galatasaray",
           logo: require("../assets/team-logos/galatasaray.png")
         },
         {
-          name: "Beşiktaş",
+          name: "Kasımpaşa",
           logo: require("../assets/team-logos/kasimpasa.png")
         },
         {
@@ -85,7 +89,11 @@ class PlayerDetails extends Component {
   }
 
   sendMessage = () => {
-    this.props.navigation.navigate("ChatScreen");
+    this.props.navigation.navigate("ChatScreen", {
+      previousScreen: PLAYER_DETAILS_SCREEN,
+      playerId: this.state.playerId,
+      playerEmail: this.state.playerEmail
+    });
   };
 
   renderPreviousPlayedTeams = () => {
@@ -99,6 +107,14 @@ class PlayerDetails extends Component {
         );
       }
     );
+  };
+
+  componentDidMount = () => {
+    const { navigation } = this.props;
+    const player = navigation.getParam("player");
+    console.log("Player details:", player);
+    const { id, email } = player;
+    this.setState({ playerId: id, playerEmail: email });
   };
 
   renderComments = () => {

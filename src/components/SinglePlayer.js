@@ -33,8 +33,6 @@ const SinglePlayer = props => {
               height: 60,
               width: 60,
               borderRadius: 30,
-              borderWidth: 0.5,
-              borderColor: "green",
               margin: 4
             }}
             source={{ uri: props.player.playerProfileImageURL }}

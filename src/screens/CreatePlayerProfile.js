@@ -26,6 +26,7 @@ class CreatePlayerProfile extends Component {
     super(props);
 
     this.state = {
+      email: null,
       playerProfileImageUri: null,
       firstName: "",
       lastName: "",
@@ -57,6 +58,7 @@ class CreatePlayerProfile extends Component {
         if (player.data()) {
           console.log("Player", player.data());
           const {
+            email,
             firstName,
             lastName,
             city,
@@ -70,6 +72,7 @@ class CreatePlayerProfile extends Component {
           } = player.data();
 
           this.setState({
+            email,
             firstName,
             lastName,
             city,
@@ -97,6 +100,7 @@ class CreatePlayerProfile extends Component {
     this.setState({ loading: true }, async () => {
       try {
         const userId = firebase.auth().currentUser.uid;
+        const email = firebase.auth().currentUser.email;
         const {
           firstName,
           lastName,
@@ -128,6 +132,7 @@ class CreatePlayerProfile extends Component {
           .doc(userId)
           .set(
             {
+              email: email,
               id: userId,
               firstName,
               lastName,

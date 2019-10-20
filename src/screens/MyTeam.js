@@ -265,6 +265,28 @@ class MyTeam extends Component {
           <View style={styles.teamLineup}>
             <Text style={{ fontWeight: "500" }}>Kadro</Text>
             {this.renderTeamLineup()}
+            <View style={styles.addPlayer}>
+              <View
+                style={{
+                  flex: 5,
+                  //backgroundColor: "red",
+                  justifyContent: "center"
+                }}
+              >
+                <Text style={{ fontSize: 18, fontWeight: "500" }}>
+                  Oyuncu Ekle
+                </Text>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                }}
+              >
+                <TouchableOpacity style={{flex:1,alignItems: "center" }}>
+                  <Icon name="account-plus" size={36} />
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         </ScrollView>
       </View>
@@ -335,5 +357,9 @@ const styles = StyleSheet.create({
     //backgroundColor: "red",
     padding: 4,
     margin: 8
+  },
+  addPlayer: {
+    flexDirection: "row",
+    marginTop: 4
   }
 });

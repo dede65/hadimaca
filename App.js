@@ -34,6 +34,7 @@ import Chat from "./src/screens/Chat";
 import NetInfo from "@react-native-community/netinfo";
 import PreviousPlayedGame from "./src/screens/PreviousPlayedGame";
 import MyTeam from "./src/screens/MyTeam";
+import Example from "./src/screens/Example";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -102,10 +103,12 @@ const AuthStack = createStackNavigator(
 const RootNavigator = createSwitchNavigator(
   {
     AuthStack: AuthStack,
-    AppStack: AppStack
+    AppStack: AppStack,
+    Example:Example
   },
   {
-    initialRouteName: "AuthStack"
+    initialRouteName: "AuthStack",
+    //initialRouteName: "Example"
   }
 );
 

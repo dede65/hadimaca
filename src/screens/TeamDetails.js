@@ -12,12 +12,15 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import SingleTeamLineupPlayer from "../components/SingleTeamLineupPlayer";
 import SingleTeamPreviousGame from "../components/SingleTeamPreviousGame";
 import SingleComment from "../components/SingleComment";
+import { TEAM_DETAILS_SCREEN } from "../utils/constants";
 
 class TeamDetails extends Component {
   constructor(props) {
     super(props);
-
+    console.log("------------TeamDetails.js Constructor------------");
     this.state = {
+      teamId: "",
+      teamEmail: "",
       teamLineup: [
         {
           firstName: "Uğur",
@@ -154,7 +157,11 @@ class TeamDetails extends Component {
   }
 
   sendMessage = () => {
-    this.props.navigation.navigate("ChatScreen");
+    this.props.navigation.navigate("ChatScreen", {
+      previousScreen: TEAM_DETAILS_SCREEN,
+      teamId: this.state.teamId,
+      teamEmail: this.state.teamEmail
+    });
   };
 
   renderPreviousGames = () => {
@@ -170,9 +177,17 @@ class TeamDetails extends Component {
   };
 
   renderComments = () => {
-    return this.state.comments.map((comment,index) => {
+    return this.state.comments.map((comment, index) => {
       return <SingleComment key={index} comment={comment} />;
     });
+  };
+
+  componentDidMount = () => {
+    const { navigation } = this.props;
+    const team = navigation.getParam("teamDetails");
+    console.log("Team details:", team);
+    const { id, email } = team;
+    this.setState({ teamId: id, teamEmail: email });
   };
 
   render() {

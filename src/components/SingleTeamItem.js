@@ -117,19 +117,19 @@ class SingleTeamItem extends Component {
             style={{
               //backgroundColor: "red",
               //paddingHorizontal: 8,
-              marginBottom:8,
+              marginBottom: 8,
               flexDirection: "row",
               justifyContent: "space-between"
             }}
           >
-            <View style={{ margin:2 }}>
+            <View style={{ margin: 2 }}>
               <Text
                 style={{ color: "#212121", fontWeight: "400", fontSize: 16 }}
               >
                 12 yorum
               </Text>
             </View>
-            <View style={{ marginRight:12}}>
+            <View style={{ marginRight: 12 }}>
               <Text
                 style={{ color: "#212121", fontWeight: "400", fontSize: 16 }}
               >

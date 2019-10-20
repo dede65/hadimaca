@@ -27,6 +27,7 @@ class CreateTeam extends Component {
     super(props);
     console.log("inside constructor");
     this.state = {
+      email: null,
       teamLogoUri: null,
       nameOfTheTeam: "",
       numberOfFootballers: null,
@@ -53,6 +54,7 @@ class CreateTeam extends Component {
         if (doc.data()) {
           console.log("Team document", doc.data());
           const {
+            email,
             teamLogoUri,
             city,
             district,
@@ -62,6 +64,7 @@ class CreateTeam extends Component {
           } = doc.data();
 
           this.setState({
+            email,
             teamLogoUri,
             city,
             district,
@@ -90,6 +93,7 @@ class CreateTeam extends Component {
     this.setState({ loading: true }, async () => {
       try {
         const teamId = firebase.auth().currentUser.uid; //user id as team id
+        const email = firebase.auth().currentUser.email;
 
         const {
           teamLogoUri,
@@ -119,8 +123,9 @@ class CreateTeam extends Component {
           .doc(teamId)
           .set(
             {
-              id:teamId,
+              id: teamId,
               teamLogoUri: teamLogoDownloadURL,
+              email: email,
               nameOfTheTeam,
               numberOfFootballers,
               numberOfSubstitutes,
@@ -189,7 +194,7 @@ class CreateTeam extends Component {
             Takımını oluştur
           </Text>
         </View>
-        <Loader loading={this.state.loading} onClose={this.modalOnClose}/>
+        <Loader loading={this.state.loading} onClose={this.modalOnClose} />
         <ScrollView>
           <View style={styles.content}>
             <View style={styles.imageContainer}>
