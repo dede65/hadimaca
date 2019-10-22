@@ -6,6 +6,7 @@ import FavoritesTabNavigator from "../navigation/FavoritesTabNavigator";
 import Teams from "../screens/tabs/maintabs/Teams";
 import Players from "../screens/tabs/maintabs/Players";
 import Chats from "../screens/tabs/maintabs/Chats";
+import ChatsTabNavigator from "../navigation/ChatsTabNavigator";
 
 const AppBottomTabNavigator = createMaterialTopTabNavigator(
   {
@@ -39,7 +40,7 @@ const AppBottomTabNavigator = createMaterialTopTabNavigator(
       }
     },
     ChatsScreen: {
-      screen: Chats,
+      screen: ChatsTabNavigator,
       navigationOptions: {
         tabBarLabel: "Mesajlar",
         tabBarIcon: ({ tintColor }) => (
