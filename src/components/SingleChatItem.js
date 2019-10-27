@@ -14,8 +14,12 @@ class SingleChatItem extends Component {
 
   onPress = () => {
     console.log("selected chat index: ", this.props.index);
-    this.props.navigation.navigate("ChatScreen", { chat: this.props.chat });
-  };  
+    this.props.navigation.navigate("ChatScreen", {
+      chat: this.props.chat,
+      previousScreen: this.props.previousScreen
+    });
+  };
+  componentDidMount = () => {};
 
   render() {
     console.log("chat:", this.props.chat);
@@ -43,7 +47,9 @@ class SingleChatItem extends Component {
           <View style={styles.messageDetails}>
             <View style={styles.messageSenderAndDate}>
               <View style={styles.messageSender}>
-                <Text>{friendEmail}</Text>
+                <Text style={{ fontWeight: "500", fontSize: 18 }}>
+                  {friendEmail}
+                </Text>
               </View>
               {/*<View style={styles.messageSentDate}>
                 <Text>{messageSentDate}</Text>

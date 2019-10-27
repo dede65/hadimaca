@@ -17,7 +17,9 @@ import {
   PLAYERS_CHATS_DOCUMENT,
   PLAYERS_CHATS_COLLECTION,
   TEAMS_CHATS_DOCUMENT,
-  TEAMS_CHATS_COLLECTION
+  TEAMS_CHATS_COLLECTION,
+  PLAYERS_CHATS_SCREEN,
+  TEAMS_CHATS_SCREEN
 } from "../utils/constants";
 class Chat extends Component {
   constructor(props) {
@@ -73,8 +75,50 @@ class Chat extends Component {
     console.log("in send message:prev screen:::", previousScreen);
     if (previousScreen === TEAM_DETAILS_SCREEN) this.sendMessageToTheTeam();
     if (previousScreen === PLAYER_DETAILS_SCREEN) this.sendMessageToThePlayer();
+    if (previousScreen === PLAYERS_CHATS_SCREEN) this._sendMessageToThePlayer();
+    if (previousScreen === TEAMS_CHATS_SCREEN) this._sendMessageToTheTeam();
   };
 
+  // when navigate from PlayersChats screen
+  _sendMessageToThePlayer = async () => {
+    if (this.isMessageValid(this.state.messageText)) {
+      const { navigation } = this.props;
+      console.log("Navigation:::", navigation);
+      const chat = navigation.getParam("chat");
+      const { users } = chat;
+      const playerEmail = users.filter(
+        user => user !== this.currentUserEmail
+      )[0];
+      const documentKey = this.buildDocumentKey(playerEmail);
+      console.log("documentKey:", documentKey);
+      try {
+        await firebase
+          .firestore()
+          .collection(CHATS_COLLECTION)
+          .doc(PLAYERS_CHATS_DOCUMENT)
+          .collection(PLAYERS_CHATS_COLLECTION)
+          .doc(documentKey)
+          .set(
+            {
+              messages: firebase.firestore.FieldValue.arrayUnion({
+                sender: this.currentUserEmail,
+                message: this.state.messageText,
+                createdAt: Date.now()
+              }),
+              receiverHasRead: false,
+              users: documentKey.split(":")
+            },
+            { merge: true }
+          );
+
+        await this.setState({ messageText: "" });
+      } catch (error) {
+        console.log("Chat._sendMessageToThePlayer():::", error.message);
+      }
+    }
+  };
+
+  // when navigate from PlayerDetails screen
   sendMessageToThePlayer = async () => {
     if (this.isMessageValid(this.state.messageText)) {
       const documentKey = this.buildDocumentKey(this.state.playerEmail);
@@ -93,7 +137,8 @@ class Chat extends Component {
                 message: this.state.messageText,
                 createdAt: Date.now()
               }),
-              receiverHasRead: false
+              receiverHasRead: false,
+              users: documentKey.split(":")
             },
             { merge: true }
           );
@@ -105,6 +150,44 @@ class Chat extends Component {
     }
   };
 
+  // when navigate from TeamsChats screen
+  _sendMessageToTheTeam = async () => {
+    if (this.isMessageValid(this.state.messageText)) {
+      const { navigation } = this.props;
+      console.log("Navigation:::", navigation);
+      const chat = navigation.getParam("chat");
+      const { users } = chat;
+      const teamEmail = users.filter(user => user !== this.currentUserEmail)[0];
+      const documentKey = this.buildDocumentKey(teamEmail);
+      console.log("documentKey:", documentKey);
+      try {
+        await firebase
+          .firestore()
+          .collection(CHATS_COLLECTION)
+          .doc(TEAMS_CHATS_DOCUMENT)
+          .collection(TEAMS_CHATS_COLLECTION)
+          .doc(documentKey)
+          .set(
+            {
+              messages: firebase.firestore.FieldValue.arrayUnion({
+                sender: this.currentUserEmail,
+                message: this.state.messageText,
+                createdAt: Date.now()
+              }),
+              receiverHasRead: false,
+              users: documentKey.split(":")
+            },
+            { merge: true }
+          );
+
+        await this.setState({ messageText: "" });
+      } catch (error) {
+        console.log("Chat._sendMessageToTheTeam:::", error.message);
+      }
+    }
+  };
+
+  // when navigate from team details
   sendMessageToTheTeam = async () => {
     if (this.isMessageValid(this.state.messageText)) {
       const documentKey = this.buildDocumentKey(this.state.teamEmail);
@@ -123,7 +206,8 @@ class Chat extends Component {
                 message: this.state.messageText,
                 createdAt: Date.now()
               }),
-              receiverHasRead: false
+              receiverHasRead: false,
+              users: documentKey.split(":")
             },
             { merge: true }
           );
@@ -150,12 +234,38 @@ class Chat extends Component {
   isMessageValid = text => text && text.replace(/\s/g, "").length;
 
   getChats = () => {
-    if (this.state.previousScreen === PLAYER_DETAILS_SCREEN) {
+    if (this.state.previousScreen === PLAYER_DETAILS_SCREEN)
       this.getChatsWithPlayer();
-    } else if (this.state.previousScreen === TEAM_DETAILS_SCREEN) {
+    if (this.state.previousScreen === TEAM_DETAILS_SCREEN)
       this.getChatsWithTeam();
-    } else {
-      console.log("Other chats");
+    if (this.state.previousScreen === PLAYERS_CHATS_SCREEN)
+      this._getChatsWithPlayer();
+    if (this.state.previousScreen === TEAMS_CHATS_SCREEN)
+      this._getChatsWithTeam();
+  };
+
+  // when navigate from PlayersChats screen
+  _getChatsWithPlayer = async () => {
+    const { navigation } = this.props;
+    console.log("Navigation:::", navigation);
+    const chat = navigation.getParam("chat");
+    const { users } = chat;
+    const playerEmail = users.filter(user => user !== this.currentUserEmail)[0];
+    try {
+      const documentKey = this.buildDocumentKey(playerEmail);
+      console.log("documentKey in chat._getChatWithPlayer:::", documentKey);
+      await firebase
+        .firestore()
+        .collection(CHATS_COLLECTION)
+        .doc(PLAYERS_CHATS_DOCUMENT)
+        .collection(PLAYERS_CHATS_COLLECTION)
+        .doc(documentKey)
+        .onSnapshot(async doc => {
+          console.log("Chat with the Player:::", doc.data());
+          await this.setState({ chat: doc.data() });
+        });
+    } catch (error) {
+      console.log("_getChatsWithPlayer() in Chat.js Error:::", error.message);
     }
   };
 
@@ -163,7 +273,7 @@ class Chat extends Component {
     try {
       const documentKey = this.buildDocumentKey(this.state.playerEmail);
       console.log("documentKey in chat.getChatWithTeam:::", documentKey);
-      const doc = await firebase
+      await firebase
         .firestore()
         .collection(CHATS_COLLECTION)
         .doc(PLAYERS_CHATS_DOCUMENT)
@@ -178,6 +288,32 @@ class Chat extends Component {
     }
   };
 
+  // when navigate from TeamChats screen
+  _getChatsWithTeam = async () => {
+    const { navigation } = this.props;
+    console.log("Navigation:::", navigation);
+    const chat = navigation.getParam("chat");
+    const { users } = chat;
+    const playerEmail = users.filter(user => user !== this.currentUserEmail)[0];
+    try {
+      const documentKey = this.buildDocumentKey(playerEmail);
+      console.log("documentKey in chat._getChatWithPlayer:::", documentKey);
+      const doc = await firebase
+        .firestore()
+        .collection(CHATS_COLLECTION)
+        .doc(TEAMS_CHATS_DOCUMENT)
+        .collection(TEAMS_CHATS_COLLECTION)
+        .doc(documentKey)
+        .onSnapshot(async doc => {
+          console.log("Chat with the Player:::", doc.data());
+          await this.setState({ chat: doc.data() });
+        });
+    } catch (error) {
+      console.log("_getChatsWithTeam() in Chat.js Error:::", error.message);
+    }
+  };
+
+  // When navigate from TeamDetails screen
   getChatsWithTeam = async () => {
     try {
       const documentKey = this.buildDocumentKey(this.state.teamEmail);
@@ -201,13 +337,14 @@ class Chat extends Component {
     console.log("Chat.componentdidMount()");
     const { navigation } = this.props;
     const previousScreen = navigation.getParam("previousScreen");
-
+    console.log("Chat.componentdidMount(): previousScreen:::", previousScreen);
     // These 2 params come from PlayerDetails.js
     const playerId = navigation.getParam("playerId"); // This is belongs to the player who the current user will send a message
     const playerEmail = navigation.getParam("playerEmail"); // This is belongs to the player who the current user will send a message
     // These 2 params come from TeamDetails.js
     const teamId = navigation.getParam("teamId"); // This is belongs to the team which the current user will send a message
     const teamEmail = navigation.getParam("teamEmail"); // This is belongs to the team which the current user will send a message
+
     try {
       await this.setState({
         previousScreen,
